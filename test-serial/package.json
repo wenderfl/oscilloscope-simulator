@@ -1,0 +1,14 @@
+{
+  "name": "Serial Port Test",
+	"version": "1.0.0",
+	"description": "Test Serial Port",
+	"main": "index.js",
+	"scripts": {
+		"test": "node index.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"serialport": "^4.0.7"
+	}
+}

@@ -26,7 +26,7 @@ listSerialPorts().then((ports) => {
 // Create a new serial port object with default options -> change the port according to oscilloscope port
 const port = new SerialPort({
 	// Check https://serialport.io/docs/api-bindings-cpp#bindingport for more info
-	path: 'COM5',
+	path: 'COM6',
 	baudRate: 9600
 });
 
@@ -39,38 +39,26 @@ parser.on('data', function(data) {
 	console.log('Received Data:', data);
 });
 
-// Write to the port, in functions
-// Function to change the time scale
-function changeTimeScale(timeScale) {
-	console.log('Changing the time scale to ' + timeScale + 's');
-	// To write a command to the oscilloscope, add a newline character at the end of the command '\n'
-	port.write(':TIM:SCAL ' + timeScale + '\n', function(err) {
-	if (err) {
-		return console.log('Error on write: ', err.message);
-	}
-	console.log('Time scale changed');
-	});
-}
-function askTimeScale() {
-	console.log('Asking for the time scale');
-	port.write(':TIM:SCAL ? \n', function(err) {
-	if (err) {
-		return console.log('Error on write: ', err.message);
-	}
-	console.log('Time scale asked');
-	});
-}
-// -------- Important note ------- 
-// I dont know if we need to do this in this way however if we want to write all the functions, it will be around 121 functions. One for each command of the oscilloscope. 
-// Translate the line above to portuguese
-// Não sei se precisamos fazer isso dessa forma, mas se quisermos escrever todas as funções, serão cerca de 121 funções. Uma para cada comando do osciloscópio. (O copilot fez sozinho)
-// -------------------------------
-// Time can only have values between 1.000E-9 and 1.000E+2, must be in scientific notation and can start with 1.000, 2.500, and 5.000.
-time = 1.000E-03;
-changeTimeScale(time);
-askTimeScale();
+// Import the commands module
+const Oscilloscope = require('./commands.js');
 
-// Write the rest of the program
+// Create a new oscilloscope object
+const oscilloscope = new Oscilloscope();
+
+// Write the commands to the port
+// writeCommand(command, parameter), where parameter can be ' ?' or ' <value>' and command is one of the commands in the commands.js file
+var string = oscilloscope.writeCommand(oscilloscope.commands.timCommands[1], '5.000E-06');
+
+function writeToPort(command) {
+	port.write(command, function(err) {
+		if (err) {
+			return console.log('Error on write: ', err.message);
+		}
+	});
+}
+
+writeToPort(string); 
+
 // Be aware that the program will not wait for the write/read opertions to finish before exiting (apart from the 5 seconds delay)
 // More info at: https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/
 

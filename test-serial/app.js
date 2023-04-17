@@ -5,6 +5,24 @@ const { SerialPort } = require('serialport');
 // https://serialport.io/docs/api-parser-readline
 const { ReadlineParser } = require('@serialport/parser-readline');
 
+//Express dependencies
+const express = require('express');
+const app = express();
+
+//Defining the views folder
+app.set('views', './views');
+app.set('view engine', 'html');
+
+//Defining the routes
+app.get('/', (req, res) => {
+	  res.render('index');
+});
+
+//Initializing the server
+const server = app.listen(3000, () => {
+	  console.log('Server is running on port 3000');
+});
+
 // Async Function to List the available serial ports
 async function listSerialPorts() {
 	try {
@@ -32,7 +50,6 @@ const port = new SerialPort({
 
 // Read the port data
 const parser = port.pipe(new ReadlineParser({ delimiter: '\n' })); 
-// Changed from default delimiter '\r\n' to '\n'
 
 // Log the received data
 parser.on('data', function(data) {

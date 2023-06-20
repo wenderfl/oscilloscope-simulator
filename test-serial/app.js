@@ -27,7 +27,7 @@ const server = app.listen(3000, () => {
 async function listSerialPorts() {
 	try {
 		const ports = await SerialPort.list();
-		//console.log('ports', ports);
+		console.log('ports', ports);
 		return ports;
 	} catch (err) {
 		console.error('Error listing ports', err);
@@ -37,25 +37,34 @@ async function listSerialPorts() {
 // List serial ports and then print them
 listSerialPorts().then((ports) => {
 	ports.forEach(function(port){
-		//console.log("Port: ", port);
+		console.log("Port: ", port);
 	});
 });
 
 // Create a new serial port object with default options -> change the port according to oscilloscope port
 const port = new SerialPort({
 	// Check https://serialport.io/docs/api-bindings-cpp#bindingport for more info
+<<<<<<< HEAD
 	path: 'COM6',
+=======
+	path: 'COM1',
+>>>>>>> parent of 392d790 (Update app.js)
 	baudRate: 9600
 });
 
 // Read the port data
+<<<<<<< HEAD
 const parser = port.pipe(new ReadlineParser({ delimiter: '\n' })); 
+=======
+const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+>>>>>>> parent of 392d790 (Update app.js)
 
 // Log the received data
 parser.on('data', function(data) {
 	console.log('Received Data:', data);
 });
 
+<<<<<<< HEAD
 // Import the commands module
 const Oscilloscope = require('./commands.js');
 
@@ -76,6 +85,18 @@ function writeToPort(command) {
 
 writeToPort(string); 
 
+=======
+// Write to the port
+console.log('Writing to port');
+port.write('Some available command here!', function(err) {
+	if (err) {
+		return console.log('Error on write: ', err.message);
+	}
+	console.log('message written');
+});
+
+// Write the rest of the program
+>>>>>>> parent of 392d790 (Update app.js)
 // Be aware that the program will not wait for the write/read opertions to finish before exiting (apart from the 5 seconds delay)
 // More info at: https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/
 
@@ -95,6 +116,7 @@ sleep(5000).then(() => {
 		}
 		console.log('port closed');
 	});
+
 	// exit the program
 	console.log('Exiting the program')
 	process.exit(0);

@@ -1,0 +1,57 @@
+:root{
+    --pageTitlebackground: #2569b1;
+    --pageTitleColor: #fff;
+    --offcanvasBackground: #e1e1e1;
+    --offcanvasCloseButtonBackground: #e2e2e2;
+    --offcanvasCloseButtonBackgroundHover: #b6b6b6;
+    --modeOffcanvasSectionBackground: #69a3e1;
+    --modeOffcanvasSectionColor: #fff;
+    --CH1OffcanvasSectionBackground: #f9a149;
+    --inputCH1OffcanvasSectionColor: #000000;
+    --CH2OffcanvasSectionBackground: #245992;
+    --inputCH2OffcanvasSectionColor: #fff;
+    --hardcopyOffcanvasSectionBackground: #4ef375;
+    --normalBoxShadow: rgb(0, 0, 0) 0px 0px 10px;
+    --offcanvasBoxShadow: 
+}
+p, h5{
+    user-select: none;
+}
+body{
+    color: #000;
+    background-color:rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+#pageTitle{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 50px;
+    background-color: var(--pageTitlebackground);
+    color: var(--pageTitleColor);
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    z-index: 1;
+    box-shadow: var(--boxShadow);
+    cursor: default;
+    user-select: none;
+}
+area {
+    cursor: pointer;
+}
+
+.signalGenerator{ /* Esta vai ser preciso modificar para ficar algo tipo offcanvas*/
+    position: relative;
+    margin: 80px;
+    top: -100px;
+    opacity: 0;
+}
+
+.no-scroll {
+    overflow: hidden;
+}

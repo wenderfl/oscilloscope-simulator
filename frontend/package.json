@@ -1,0 +1,20 @@
+{
+    "name": "oscilloscopesimulator-frontend",
+    "version": "1.0.0",
+    "description": "Frontend of the Oscilloscope Simulator",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Joao Ferreira",
+    "license": "ISC",
+    "dependencies": {
+        "chart": "^0.1.2",
+        "d3": "^7.8.5",
+        "ejs": "^3.1.9",
+        "fs": "^0.0.1-security",
+        "jquery": "^3.6.4",
+        "jsdom": "^21.1.1",
+        "request": "^2.88.2",
+        "xlsx": "^0.18.5"
+    }
+}

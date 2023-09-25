@@ -1,0 +1,56 @@
+<%- include('partials/header') %>
+<h1 id="pageTitle">Oscilloscope Interface</h1>
+    <div class="oscilloscope">
+        <img src="images/oscilloscope.png" draggable="false" alt="oscilloscope" id="oscilloscope" usemap ="#oscilloscopeMap">
+        <%- include('imagemap/oscilloscopeMap') %>
+        <img src="images/ch1-button.png" draggable="false" alt="ch1-button" id="ch1-button">
+        <img src="images/ch2-button.png" draggable="false" alt="ch2-button" id="ch2-button">
+        <img src="images/power-light.png" draggable="false" alt="power-light" id="power-light">
+        <img src="images/cable.png" draggable="false" alt="CH1Input" id="CH1Input">
+        <img src="images/cable.png" draggable="false" alt="CH2Input" id="CH2Input">
+        <div class="interface">
+            <img src="images/oscilloscope-interface-template.png" draggable="false" alt="oscilloscope-interface" id="oscilloscope-interface">
+            <img src="images/main.png" draggable="false" alt="main" id="main">
+            <img src="images/XY.png" draggable="false" alt="XY" id="XY">
+            <p id="ch1">CH1</p>
+            <p id="ch1-voltageScale"></p>
+            <img src="images/ch1-ac.png" draggable="false" alt="ch1-ac" id="ch1-ac">
+            <img src="images/ch1-gnd.png" draggable="false" alt="ch1-gnd" id="ch1-gnd">
+            <img src="images/ch1-dc.png" draggable="false" alt="ch1-dc" id="ch1-dc">
+            <p id="ch2">CH2</p>
+            <p id="ch2-voltageScale"></p>
+            <img src="images/ch2-ac.png" draggable="false" alt="ch2-ac" id="ch2-ac">
+            <img src="images/ch2-gnd.png" draggable="false" alt="ch2-gnd" id="ch2-gnd">
+            <img src="images/ch2-dc.png" draggable="false" alt="ch2-dc" id="ch2-dc">
+            <p id="time-horizontalScale"></p>
+            <img src="images/stop.png" draggable="false" alt="stop" id="stop">
+            <!-- <p id="signalFrequency"></p> -->
+            <p id="trigger-source"></p>
+            <p id="trigger-type"></p>
+            <!-- <p id="trigger-slope"></p>
+            <p id="trigger-polarity"></p> -->
+            <%- include('partials/texts') %>
+            <div class="waveforms">
+                <img src="images/background-image.png" draggable="false" alt="background-image" id="background-image">
+                <p id="alertMessage"></p>
+                <img src="images/cursorCH1.png" draggable="false" alt="cursorCH1" id="cursorCH1">
+                <img src="images/cursorCH2.png" draggable="false" alt="cursorCH2" id="cursorCH2">
+                <img src="images/cursor-trigger.png" draggable="false" alt="cursor-trigger" id="cursor-trigger">
+                <img src="images/cursor-time.png" draggable="false" alt="cursor-time" id="cursor-time">
+                <div class="charts">
+                    <svg id="myChart1"></svg>
+                    <svg id="myChart2"></svg> 
+                    <svg id="myChart3"></svg>  
+                </div>
+            </div>
+        </div>
+        <%- include('offcanvas/mode-offcanvas') %>
+        <%- include('offcanvas/input-offcanvas') %>
+        <%- include('offcanvas/signal-generator-CH1') %>
+        <%- include('offcanvas/signal-generator-CH2') %>
+        <%- include('offcanvas/hardcopy-offcanvas') %>
+        <%- include('offcanvas/measureAll') %>
+        <input type="file" id="csvFileInput" style="display: none;">
+    </div>
+      
+<%- include('partials/footer') %>

@@ -1,0 +1,251 @@
+.interface{
+    position: absolute;
+    opacity: 0;
+    top: 52px;
+    left: 80px;
+    user-select: none;
+}
+#background-image {
+    width: 367px;
+    height: 295px;
+    z-index: 2;
+}
+#alertMessage{
+    position: absolute;
+    top: 277px;
+    left: 5px;
+    width: 300px;
+    height: 4px;
+    z-index: 3;
+    display: none;
+    color: #fb3333;
+    font-size: 11px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#cursorCH1, #cursorCH2{
+    position: absolute;
+    top: 137px;
+    left: -4px;
+    z-index: 3;
+    opacity: 0;
+}
+#cursor-trigger{
+    position: absolute;
+    top: 137px;
+    left: 351px;
+    z-index: 3;
+    opacity: 1;
+}
+#cursor-time{
+    position: absolute;
+    top: -4px;
+    left: 174px;
+    z-index: 3;
+    opacity: 1;
+}
+.charts{
+    width: 367px;
+    height: 295px;
+    z-index: 3;
+}
+#myChart1{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+}
+#myChart2{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+}
+#myChart3{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+}
+#main{
+    position: absolute;
+    top: 316px;
+    left: 5px;
+    z-index: 2;
+    display: block;
+}
+#XY{
+    position: absolute;
+    top: 316px;
+    left: 5px;
+    z-index: 2;
+    display: none;
+}
+#signalFrequency{
+    position: absolute;
+    top: 327px;
+    left: 400px;
+    color: #fbff00;
+    z-index: 2;
+    font-size: 12px;
+    width: 0px;
+    height: 0px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#ch1{
+    position: absolute;
+    top: 327px;
+    left: 5px;
+    color: #fbff00;
+    z-index: 2;
+    font-size: 12px;
+    width: 0px;
+    height: 0px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#ch1-voltageScale {
+    position: absolute;
+    top: 327px;
+    left: 57px;
+    color: #fbff00;
+    z-index: 2;
+    font-size: 12px;
+    width: 0px;
+    height: 0px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#ch1-ac{
+    position: absolute;
+    top: 334px;
+    left: 36px;
+    z-index: 2;
+    opacity: 1;
+}
+#ch1-gnd{
+    position: absolute;
+    top: 334px;
+    left: 36px;
+    z-index: 2;
+    opacity: 0;
+}
+#ch1-dc{
+    position: absolute;
+    top: 336px;
+    left: 36px;
+    z-index: 2;
+    opacity: 0;
+}
+#ch2{
+    position: absolute;
+    top: 327px;
+    left: 125px;
+    color: #00eaff;
+    z-index: 2;
+    font-size: 12px;    
+    width: 0px;
+    height: 0px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#ch2-voltageScale {
+    position: absolute;
+    top: 327px;
+    left: 180px;
+    color: #00eaff;
+    z-index: 2;
+    font-size: 12px;    
+    width: 0px;
+    height: 0px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#ch2-ac{
+    position: absolute;
+    top: 334px;
+    left: 159px;
+    z-index: 2;
+    opacity: 1;
+}
+#ch2-gnd{
+    position: absolute;
+    top: 334px;
+    left: 159px;
+    z-index: 2;
+    opacity: 0;
+}
+#ch2-dc{
+    position: absolute;
+    top: 336px;
+    left: 159px;
+    z-index: 2;
+    opacity: 0;
+}
+#time-horizontalScale {
+    position: absolute;
+    top: 313px;
+    left: 158px;
+    color: rgb(44, 248, 227);
+    z-index: 2;
+    font-size: 11px;    
+    width: 0px;
+    height: 0px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+/*? Trigger */
+#trigger-source{
+    position: absolute;
+    top: 313px;
+    left: 240px;
+    z-index: 2;
+    font-size: 12px;    
+    width: 0px;
+    height: 0px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#trigger-type{
+    position: absolute;
+    top: 313px;
+    left: 275px;
+    color: #ffffff;
+    z-index: 2;
+    font-size: 12px;    
+    width: 0px;
+    height: 0px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+#trigger-slope{
+    position: absolute;
+    top: 313px;
+    left: 300px;
+    z-index: 2;
+    opacity: 1;
+}
+#stop {
+    position: absolute;
+    top: 2px;
+    left: 340px;
+    display: none;
+}
+.waveforms {
+    opacity: 1;
+    position: absolute;
+    top: 17px;
+    left: 16px;
+    width: 367px;
+    height: 295px;
+}

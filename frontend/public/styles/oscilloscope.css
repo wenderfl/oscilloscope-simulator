@@ -1,0 +1,55 @@
+#oscilloscope{
+    border: 1px solid #000;
+    box-shadow: rgb(0, 0, 0) 0px 0px 10px;
+}
+.oscilloscope{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    width: 1260px;
+    height: 530px;
+    user-select: none;
+}
+#power-light{
+    position: absolute;
+    top: 65.5px;
+    left: 680px;
+    z-index: 1;
+    opacity: 0;
+}
+#ch1-button{
+    position: absolute;
+    top: 255px;
+    left: 698px;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+}
+#ch2-button{
+    position: absolute;
+    top: 254px;
+    left: 854px;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+}
+#CH1Input{
+    position: absolute;
+    top: 428px;
+    left: 675px;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+}
+#CH2Input{
+    position: absolute;
+    top: 428px;
+    left: 830px;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+}
+#program{
+    cursor: not-allowed;
+}

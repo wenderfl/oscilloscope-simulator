@@ -1,0 +1,231 @@
+.titles{
+    position: absolute;
+    top: 0px;
+    left: 383px;
+    font-size: 20px;
+    color: #000;
+    z-index: 2;
+    width: 0px;
+    height: 0px;
+    user-select: none;
+    text-align: center;
+    font-style: normal;
+}
+
+#menu-title {
+    position: absolute;
+    top: -6px;
+    width: 96px;
+    height: 18px;
+}
+#menu-textTitle1 {
+    position: absolute;
+    top: 20px;
+    width: 96px;
+    height: 18px;
+}
+#menu-textTitle2 {
+    position: absolute;
+    top: 79px;
+    width: 96px;
+    height: 18px;
+}
+#menu-textTitle3 {
+    position: absolute;
+    top: 138px;
+    width: 96px;
+    height: 18px;
+}
+#menu-textTitle4 {
+    position: absolute;
+    top: 197px;
+    width: 96px;
+    height: 18px;
+}
+#menu-textTitle5 {
+    position: absolute;
+    top: 256px;
+    width: 96px;
+    height: 18px;
+}
+
+.texts{
+    position: absolute;
+    top: 0px;
+    left: 383px;
+    font-size: 14px;
+    color: #000000;
+    font-weight: bold;
+    z-index: 2;
+    width: 0px;
+    height: 0px;
+    user-select: none;
+    text-align: center;
+    font-weight: normal;
+    font-style: normal;
+}
+#menu-text1 {
+    position: absolute;
+    top: 48px;
+    width: 96px;
+    height: 18px;
+}
+#menu-text2 {
+    position: absolute;
+    top: 107px;
+    width: 96px;
+    height: 18px;
+}
+#menu-text3 {
+    position: absolute;
+    top: 167px;
+    width: 96px;
+    height: 18px;
+}
+#menu-text4 {
+    position: absolute;
+    top: 226px;
+    width: 96px;
+    height: 18px;
+}
+#menu-text5 {
+    position: absolute;
+    top: 286px;
+    width: 96px;
+    height: 18px;
+}
+
+.solos{
+    position: absolute;
+    top: 0px;
+    left: 383px;
+    font-size: 19px;
+    color: #000;
+    z-index: 2;
+    width: 0px;
+    height: 0px;
+    user-select: none;
+    text-align: center;
+    font-style: normal;
+}
+#menu-soloText1 {
+    position: absolute;
+    top: 34px;
+    width: 96px;
+    height: 18px;
+}
+#menu-soloText2 {
+    position: absolute;
+    top: 93px;
+    width: 96px;
+    height: 18px;
+}
+#menu-soloText3 {
+    position: absolute;
+    top: 152px;
+    width: 96px;
+    height: 18px;
+}
+#menu-soloText4 {
+    position: absolute;
+    top: 211px;
+    width: 96px;
+    height: 18px;
+}
+#menu-soloText5 {
+    position: absolute;
+    top: 270px;
+    width: 96px;
+    height: 18px;
+}
+
+.values{
+    position: absolute;
+    top: 0px;
+    left: 383px;
+    font-size: 14px;
+    color: #000;
+    z-index: 2;
+    width: 0px;
+    height: 0px;
+    user-select: none;
+    text-align: left;
+}
+#menu-valueText11 {
+    position: absolute;
+    top: 44px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText12 {
+    position: absolute;
+    top: 58px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText21 {
+    position: absolute;
+    top: 103px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText22 {
+    position: absolute;
+    top: 117px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText31 {
+    position: absolute;
+    top: 162px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText32 {
+    position: absolute;
+    top: 176px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText41 {
+    position: absolute;
+    top: 193px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText42 {
+    position: absolute;
+    top: 207px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText43 {
+    position: absolute;
+    top: 221px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText44 {
+    position: absolute;
+    top: 235px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText51 {
+    position: absolute;
+    top: 266px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText52 {
+    position: absolute;
+    top: 280px;
+    width: 96px;
+    height: 36px;
+}
+#menu-valueText53 {
+    position: absolute;
+    top: 294px;
+    width: 96px;
+    height: 36px;
+}

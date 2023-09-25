@@ -1,0 +1,409 @@
+/* Offcanvas related CSS */
+
+/*?------------ Mode Selector Offcanvas ------------*/
+.mode-offcanvas {
+    position: absolute;
+    z-index: 3;
+    top: 5px;
+    left: 660px;
+    width: 250px;
+    height: 127px;
+    background-color: var(--offcanvasBackground);
+    border: 1px solid #232323;
+    box-shadow: #595959 5px 5px 5px;
+    border-radius: 0px;
+    display: none;
+    cursor: default;
+    user-select: none;
+}
+.mode-offcanvas-header {
+    padding-left: 5px;
+    padding-top: 5px;
+    border-radius: 0px;
+    font-size: 14px;
+    background-color: #2569b1;
+    color:#fff;
+    border-bottom: 1px solid #232323;
+    text-align: left;
+}
+.mode-btn-close {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: var(--offcanvasCloseButtonBackground);
+} 
+.mode-btn-close:hover {
+    background-color: var(--offcanvasCloseButtonBackgroundHover);
+    text-decoration: none;
+    opacity: 1;
+}
+.mode-offcanvas-body {
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#acquisition{
+    margin-top: 7px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#acquisition:hover{
+    cursor: pointer;
+    color: var(--modeOffcanvasSectionColor);
+    background-color: var(--modeOffcanvasSectionBackground);
+}
+#simulation{
+    margin-top: -10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#simulation:hover{
+    cursor: pointer;
+    color: var(--modeOffcanvasSectionColor);
+    background-color: var(--modeOffcanvasSectionBackground);
+}
+
+/*?------------ Input Selector Offcanvas ------------*/
+/* ------ CH1 Input ------*/
+.input-offcanvas-ch1 {
+    position: absolute;
+    z-index: 3;
+    top: 300px;
+    left: 675px;
+    width: 250px;
+    height: 228px;
+    background-color: var(--offcanvasBackground);
+    border: 1px solid #232323;
+    box-shadow: #595959 5px 5px 5px;
+    border-radius: 0px;
+    display: none;
+    cursor: default;
+    user-select: none;
+}
+.input-offcanvas-header-ch1 {
+    padding-left: 5px;
+    padding-top: 5px;
+    border-radius: 0px;
+    font-size: 14px;
+    color:#000000;
+    background-color: var(--CH1OffcanvasSectionBackground);
+    border-bottom: 1px solid #232323;
+    text-align: left;
+}
+.input-btn-close-ch1 {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: var(--offcanvasCloseButtonBackground);
+}
+.input-btn-close-ch1:hover {
+    background-color: var(--offcanvasCloseButtonBackgroundHover);
+    text-decoration: none;
+    opacity: 1;
+} 
+.input-offcanvas-body-ch1 {
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#calibration-ch1{
+    margin-top: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#calibration-ch1:hover{
+    cursor: pointer;
+    color: var(--inputCH1OffcanvasSectionColor);
+    background-color: var(--CH1OffcanvasSectionBackground);
+}
+#signalGeneratorSignal-ch1{
+    margin-top: -5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#signalGeneratorSignal-ch1:hover{
+    cursor: pointer;
+    color: var(--inputCH1OffcanvasSectionColor);
+    background-color: var(--CH1OffcanvasSectionBackground);
+}
+#externalFile-ch1{
+    margin-top: -5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#externalFile-ch1:hover{
+    cursor: pointer;
+    color: var(--inputCH1OffcanvasSectionColor);
+    background-color: var(--CH1OffcanvasSectionBackground);
+}
+#realSignal-ch1{
+    margin-top: -5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#realSignal-ch1:hover{
+    cursor: pointer;
+    color: var(--inputCH1OffcanvasSectionColor);
+    background-color: var(--CH1OffcanvasSectionBackground);
+}
+/* ------ CH2 Input ------*/
+.input-offcanvas-ch2 {
+    position: absolute;
+    z-index: 3;
+    top: 300px;
+    left: 675px;
+    width: 250px;
+    height: 228px;
+    background-color: var(--offcanvasBackground);
+    border: 1px solid #232323;
+    box-shadow: #595959 5px 5px 5px;
+    border-radius: 0px;
+    display: none;
+    cursor: default;
+    user-select: none;
+}
+.input-offcanvas-header-ch2 {
+    padding-left: 5px;
+    padding-top: 5px;
+    border-radius: 0px;
+    font-size: 14px;
+    color:#ffffff;
+    background-color: var(--CH2OffcanvasSectionBackground);
+    border-bottom: 1px solid #232323;
+    text-align: left;
+}
+.input-btn-close-ch2 {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: var(--offcanvasCloseButtonBackground);
+}
+.input-btn-close-ch2:hover {
+    background-color: var(--offcanvasCloseButtonBackgroundHover);
+    text-decoration: none;
+    opacity: 1;
+}
+.input-offcanvas-body-ch2 {
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#calibration-ch2{
+    margin-top: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#calibration-ch2:hover{
+    cursor: pointer;
+    color: var(--inputCH2OffcanvasSectionColor);
+    background-color: var(--CH2OffcanvasSectionBackground);
+}
+#signalGeneratorSignal-ch2{
+    margin-top: -5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#signalGeneratorSignal-ch2:hover{
+    cursor: pointer;
+    color: var(--inputCH2OffcanvasSectionColor);
+    background-color: var(--CH2OffcanvasSectionBackground);
+}
+#externalFile-ch2{
+    margin-top: -5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#externalFile-ch2:hover{
+    cursor: pointer;
+    color: var(--inputCH2OffcanvasSectionColor);
+    background-color: var(--CH2OffcanvasSectionBackground);
+}
+#realSignal-ch2{
+    margin-top: -5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#realSignal-ch2:hover{
+    cursor: pointer;
+    color: var(--inputCH2OffcanvasSectionColor);
+    background-color: var(--CH2OffcanvasSectionBackground);
+}
+
+/*?------------ Hardcopy Offcanvas ------------*/
+.hardcopy-offcanvas {
+    position: absolute;
+    z-index: 3;
+    top: 120px;
+    left: 600px;
+    width: 250px;
+    height: 287px;
+    background-color: var(--offcanvasBackground);
+    border: 1px solid #232323;
+    box-shadow: #595959 5px 5px 5px;
+    border-radius: 0px;
+    display: none;
+    cursor: default;
+}
+.hardcopy-offcanvas-header {
+    padding-left: 5px;
+    padding-top: 5px;
+    border-radius: 0px;
+    font-size: 14px;
+    background-color: #0c6404;
+    color:#fff;
+    border-bottom: 1px solid #232323;
+    text-align: left;
+}
+.hardcopy-btn-close {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: var(--offcanvasCloseButtonBackground);
+}
+  
+.hardcopy-btn-close:hover {
+        background-color: var(--offcanvasCloseButtonBackgroundHover);
+        text-decoration: none;
+        opacity: 1;
+}
+.hardcopy-offcanvas-body {
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#fullscreenImg{
+    margin-top: 7px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#fullscreenImg:hover{
+    cursor: pointer;
+    color:#000000;
+    background-color: var(--hardcopyOffcanvasSectionBackground);
+}
+#waveformImg{
+    margin-top: -10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#waveformImg:hover{
+    cursor: pointer;
+    color:#000000;
+    background-color: var(--hardcopyOffcanvasSectionBackground);
+}
+#displayAllCH1Img{
+    margin-top: -10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#displayAllCH1Img:hover{
+    cursor: pointer;
+    color:#000000;
+    background-color: var(--hardcopyOffcanvasSectionBackground);
+}
+#displayAllCH2Img{
+    margin-top: -10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#displayAllCH2Img:hover{
+    cursor: pointer;
+    color:#000000;
+    background-color: var(--hardcopyOffcanvasSectionBackground);
+}
+#waveformCH1CSV{
+    margin-top: -10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#waveformCH1CSV:hover{
+    cursor: pointer;
+    color:#000000;
+    background-color: var(--hardcopyOffcanvasSectionBackground);
+}
+#waveformCH2CSV{
+    margin-top: -10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#waveformCH2CSV:hover{
+    cursor: pointer;
+    color:#000000;
+    background-color: var(--hardcopyOffcanvasSectionBackground);
+}

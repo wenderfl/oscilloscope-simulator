@@ -1,0 +1,11 @@
+{
+  "name": "oscilloscopesimulator",
+  "version": "1.0.0",
+  "description": "Oscilloscope Simulator that has 2 modes of working, one communicating with a real oscilloscope and the other one simulating the oscilloscope.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joao Ferreira",
+  "license": "ISC"
+}

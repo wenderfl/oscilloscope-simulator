@@ -1,0 +1,208 @@
+/*?------------ MeasureAll CH1 Offcanvas ------------*/
+.measureAll-CH1{
+    position: fixed;
+    z-index: 3;
+    top: 68px;
+    left: 95px;
+    width: 367px;
+    height: 295px;
+    background-color: rgb(67, 67, 67);
+    border: 1px solid #232323;
+    box-shadow: #595959 5px 5px 5px;
+    border-radius: 0px;
+    display: none;
+    cursor: default;
+}
+.measureAll-CH1-header {
+    padding-left: 5px;
+    padding-top: 5px;
+    border-radius: 0px;
+    font-size: 14px;
+    color:#000000;
+    background-color: var(--CH1OffcanvasSectionBackground);
+    border-bottom: 1px solid #232323;
+    text-align: left;
+}
+.measureAll-CH1-header:active {
+    cursor: grabbing;
+}
+.measureAllCH1-btn-minimize {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: #e2e2e2;
+}
+.measureAllCH1-btn-close {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: var(--offcanvasCloseButtonBackground);
+}
+.measureAllCH1-close:hover {
+    background-color: var(--offcanvasCloseButtonBackgroundHover);
+    text-decoration: none;
+    opacity: 0.8;
+}
+.measureAllCH1-btn-maximize {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: #e2e2e2;
+    display: none;
+}  
+.measureAllCH1-body1 {
+    position: absolute;
+    top: 35px;
+    width: 183px;
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: #fff;
+}
+.measureAllCH1-body2 {
+    position: absolute;
+    top: 35px;
+    left: 185px;
+    width: 183px;
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: #fff;
+}
+/*?------------ MeasureAll CH2 Offcanvas ------------*/
+.measureAll-CH2{
+    position: fixed;
+    z-index: 3;
+    top: 68px;
+    left: 95px;
+    width: 367px;
+    height: 295px;
+    background-color: rgb(67, 67, 67);
+    border: 1px solid #232323;
+    box-shadow: #595959 5px 5px 5px;
+    border-radius: 0px;
+    display: none;
+    cursor: default;
+}
+.measureAll-CH2-header {
+    padding-left: 5px;
+    padding-top: 5px;
+    border-radius: 0px;
+    font-size: 14px;
+    color:#ffffff;
+    background-color: var(--CH2OffcanvasSectionBackground);
+    border-bottom: 1px solid #232323;
+    text-align: left;
+}
+.measureAll-CH2-header:active {
+    cursor: grabbing;
+}
+.measureAllCH2-btn-minimize {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: #e2e2e2;
+}
+.measureAllCH2-btn-close {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: var(--offcanvasCloseButtonBackground);
+}
+.measureAllCH2-close:hover {
+    background-color: var(--offcanvasCloseButtonBackgroundHover);
+    text-decoration: none;
+    opacity: 0.8;
+}
+.measureAllCH2-btn-maximize {
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #464646;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.8;
+    background-color: #e2e2e2;
+    display: none;
+}  
+.measureAllCH2-body1 {
+    position: absolute;
+    top: 35px;
+    width: 183px;
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: #fff;
+}
+.measureAllCH2-body2 {
+    position: absolute;
+    top: 35px;
+    left: 185px;
+    width: 183px;
+    font-size: 16px;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: #fff;
+}

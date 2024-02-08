@@ -6,9 +6,12 @@
     user-select: none;
 }
 #background-image {
-    width: 367px;
-    height: 295px;
-    z-index: 2;
+    position: absolute;
+    top: 1px;
+    left: -3px;
+    width: 373px;
+    height: 301px;
+    z-index: 0;
 }
 #alertMessage{
     position: absolute;
@@ -20,7 +23,7 @@
     display: none;
     color: #fb3333;
     font-size: 11px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
@@ -82,16 +85,16 @@
     z-index: 2;
     display: none;
 }
-#signalFrequency{
+#ch1-signal-frequency{
     position: absolute;
     top: 327px;
     left: 400px;
     color: #fbff00;
     z-index: 2;
     font-size: 12px;
-    width: 0px;
+    width: 90px;
     height: 0px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
@@ -104,7 +107,7 @@
     font-size: 12px;
     width: 0px;
     height: 0px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
@@ -115,9 +118,9 @@
     color: #fbff00;
     z-index: 2;
     font-size: 12px;
-    width: 0px;
+    width: 60px;
     height: 0px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
@@ -142,6 +145,19 @@
     z-index: 2;
     opacity: 0;
 }
+#ch2-signal-frequency{
+    position: absolute;
+    top: 327px;
+    left: 400px;
+    color: #00eaff;
+    z-index: 2;
+    font-size: 12px;    
+    width: 90px;
+    height: 0px;
+    font-family: 'Minecraftia';
+    font-weight: normal;
+    font-style: normal;
+}
 #ch2{
     position: absolute;
     top: 327px;
@@ -151,7 +167,7 @@
     font-size: 12px;    
     width: 0px;
     height: 0px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
@@ -162,9 +178,9 @@
     color: #00eaff;
     z-index: 2;
     font-size: 12px;    
-    width: 0px;
+    width: 60px;
     height: 0px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
@@ -196,9 +212,9 @@
     color: rgb(44, 248, 227);
     z-index: 2;
     font-size: 11px;    
-    width: 0px;
+    width: 60px;
     height: 0px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
@@ -211,7 +227,7 @@
     font-size: 12px;    
     width: 0px;
     height: 0px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
@@ -224,16 +240,17 @@
     font-size: 12px;    
     width: 0px;
     height: 0px;
-    font-family: 'MinecraftiaRegular';
+    font-family: 'Minecraftia';
     font-weight: normal;
     font-style: normal;
 }
 #trigger-slope{
     position: absolute;
-    top: 313px;
-    left: 300px;
+    top: 316px;
+    left: 330px;
     z-index: 2;
     opacity: 1;
+    transform: scaleX(1);
 }
 #stop {
     position: absolute;

@@ -1,0 +1,144 @@
+{
+  "versions": [
+      {
+        "version": "0.1.0 - Release of the Beta Version",
+        "release_date": "29-01-2024",
+        "changes": [
+          {
+            "category": "Features",
+            "description": "Features/fixes added in this version.",
+            "items": [
+              "Added the Release Notes.",
+              "Improved the grid of the oscilloscope.",
+              "Improved the design of the oscilloscope page (WiP).",
+              "Limited the position of the signal generator to be inside the page.",
+              "Added a border to indicate the selected buttons in the signal generator.",
+              "Fixed the measure values having both the value and unit together.",
+              "Added the visual indication that the button 'Menu ON/OFF' doesn't work.",
+              "Incremented the step of the frequency, amplitude and offset of the signal generator (from 0.01 to 0.1)."
+            ]
+          }, 
+          {
+            "category": "Bugs",
+            "description": "Bugs already detected in this version.",
+            "items": [
+              "When the input signal of one channel is OFF and the vertical position of that channel is below or equal to 0V, the signal disappears.",
+              "The same situation described above happens when the Coupling of the channel is set to GND.",
+              "If the signal has Probe higher than 1, the vertical position of the signal is not correct.",
+              "Math signal is incorrect when both frequencies are different. (A solution was found but is still in development.)",
+              "Scrolling the mouse wheel in the handles of both oscilloscope and signal generator works only work in the Mozilla Firefox browser.",
+              "The trigger does not have all the options available."
+            ]
+          },
+          {
+            "category": "Tasks",
+            "description": "Tasks to be done in the later versions.",
+            "items": [
+              "Add the frequency of the signal in the UI of the oscilloscope.",
+              "Add the information regarding the slope of the signal in the UI of the oscilloscope.",
+              "Add functionality to the missing trigger options.",
+              "Fix the error detected in the Math signal.",
+              "Fix the errors regarding the vertical position of the signal.",
+              "Implement the possibility to save the screen with the white background.",
+              "Add the functionality 'Duty Cycle' to the signal generator.",
+              "Change the way of the oscilloscope and signal generator handles are moved.",
+              "Add a small description about the project in the 'Support' page.",
+              "Add the work made by Pedro Salgueiro and João Pereira in the 'Support' page.",
+              "Create a better design for the 'Support' page."
+            ]
+          }
+        ]
+      },
+      {
+        "version": "0.1.1 - 2nd February 2024 Patch",
+        "release_date": "02-02-2024",
+        "changes": [
+          {
+            "category": "Features",
+            "description": "Features/fixes added in this version.",
+            "items": [
+              "Implemented possible solution to read all the CSV files.",
+              "Fixed trigger cursor not being updated with the autoset.",
+              "Fixed the values in measure not being displayed correctly, related to SI prefixes.",
+              "Added the frequency of the signal in the UI of the oscilloscope.",
+              "Added the information regarding the slope of the signal in the UI of the oscilloscope."
+            ]
+          }, 
+          {
+            "category": "Bugs",
+            "description": "Bugs already detected in this version.",
+            "items": [
+              "The trigger slope is not assigned to a channel, for now it is for both channels.",
+              "When the input signal of one channel is OFF and the vertical position of that channel is below or equal to 0V, the signal disappears.",
+              "The same situation described above happens when the Coupling of the channel is set to GND.",
+              "If the signal has Probe higher than 1, the vertical position of the signal is not correct.",
+              "Math signal is incorrect when both frequencies are different. (A solution was found but is still in development.)",
+              "Scrolling the mouse wheel in the handles of both oscilloscope and signal generator works only work in the Mozilla Firefox browser.",
+              "The trigger does not have all the options available."
+            ]
+          },
+          {
+            "category": "Tasks",
+            "description": "Tasks to be done in the later versions.",
+            "items": [
+              "Add functionality to the missing trigger options.",
+              "Fix the error detected in the Math signal.",
+              "Fix the errors regarding the vertical position of the signal.",
+              "Implement the possibility to save the screen with the white background.",
+              "Add the functionality 'Duty Cycle' to the signal generator.",
+              "Change the way of the oscilloscope and signal generator handles are moved.",
+              "Add a small description about the project in the 'Support' page.",
+              "Add the work made by Pedro Salgueiro and João Pereira in the 'Support' page.",
+              "Create a better design for the 'Support' page."
+            ]
+          }
+        ]
+      },
+      {
+        "version": "0.1.2 - 8th February 2024 Patch",
+        "release_date": "08-02-2024",
+        "changes": [
+          {
+            "category": "Features",
+            "description": "Features/fixes added in this version.",
+            "items": [
+              "Added a more detailed description of the project in the 'Support' page.",
+              "Fixed the problems related with scroll bars.",
+              "Disabled (for now) the possibility to scroll the mouse wheel in the handles of both oscilloscope and signal generator.",
+              "Fixed the Autoset function not updating the coupling of the channels.",
+              "Fixed the coupling of the channels not being correct when the signal is provided by the CSV file."
+            ]
+          }, 
+          {
+            "category": "Bugs",
+            "description": "Bugs already detected in this version.",
+            "items": [
+              "The trigger slope is not assigned to a channel, for now it is for both channels.",
+              "When the input signal of one channel is OFF and the vertical position of that channel is below or equal to 0V, the signal disappears.",
+              "The same situation described above happens when the Coupling of the channel is set to GND.",
+              "If the signal has Probe higher than 1, the vertical position of the signal is not correct.",
+              "Math signal is incorrect when both frequencies are different. (A solution was found but is still in development.)",
+              "Scrolling the mouse wheel in the handles of both oscilloscope and signal generator works only work in the Mozilla Firefox browser.",
+              "The trigger does not have all the options available."
+            ]
+          },
+          {
+            "category": "Tasks",
+            "description": "Tasks to be done in the later versions.",
+            "items": [
+              "Add functionality to the missing trigger options.",
+              "Fix the error detected in the Math signal.",
+              "Fix the errors regarding the vertical position of the signal.",
+              "Implement the possibility to save the screen with the white background.",
+              "Add the functionality 'Duty Cycle' to the signal generator.",
+              "Change the way of the oscilloscope and signal generator handles are moved.",
+              "Add a small description about the project in the 'Support' page.",
+              "Add the work made by Pedro Salgueiro and João Pereira in the 'Support' page.",
+              "Create a better design for the 'Support' page."
+            ]
+          }
+        ]
+      }
+  ]
+}
+  

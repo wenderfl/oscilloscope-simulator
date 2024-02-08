@@ -16,6 +16,9 @@ $(document).ready(function(){
     }).catch(error => {
         console.error(error);
     });
+    $("#pageTitle").click(function(){
+        window.location.href = "/";
+    });
 //? Power Button --------------------------------------------------------------------------------------------
     $("#power").click(function(){
         // Display the oscilloscope modes
@@ -124,14 +127,14 @@ $(document).ready(function(){
         $("#csvFileInput").trigger('click');
     });
     $("#csvFileInput").change(function(e) {
-        const file = e.target.files[0];
+    const file = e.target.files[0];
         const reader = new FileReader();
         reader.onload = function(e) {
             const csvData = e.target.result;
             processData(csvData); // Chame a função processData() com os dados do CSV
           };
           reader.readAsText(file); // Leia o arquivo como texto
-      });
+    });
     // Acquisition-only mode + hold mode if stop button is pressed
     $("#realSignal-ch1").click(function(){
         // If the connection with the Oscilloscope is established, the user will be able to receive the signal from the oscilloscope
@@ -166,27 +169,27 @@ $(document).ready(function(){
         }
         else{ checkAndAlertOscilloscopeStatus(); }
     });
-    $("#triggerLevel").on("wheel", function(e) {
-        if(powerFlag == 1){
-            // Increments the trigger level when scrolling up
-            if (e.originalEvent.deltaY < 0) {
-                trigger.level += 0.01;
-                triggerLevel();
-            }
-            // Decrements the trigger level when scrolling down
-            else if (e.originalEvent.deltaY > 0) {
-                trigger.level -= 0.01;
-                triggerLevel();
-            }
-        }
-    });
+    // $("#triggerLevel").on("wheel", function(e) {
+    //     if(powerFlag == 1){
+    //         // Increments the trigger level when scrolling up
+    //         if (e.originalEvent.deltaY < 0) {
+    //             trigger.level += 0.01;
+    //             triggerLevel();
+    //         }
+    //         // Decrements the trigger level when scrolling down
+    //         else if (e.originalEvent.deltaY > 0) {
+    //             trigger.level -= 0.01;
+    //             triggerLevel();
+    //         }
+    //     }
+    // });
     //When the mouse enters the trigger level, the body becomes unscrollable, needed for the mousewheel event
-    $("#triggerLevel").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#triggerLevel").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#triggerLevel").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#triggerLevel").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
     $("#triggerMenu").click(function(){
         if(offCanvas == 1){ turnOffOffcanvas(); }
         else if(powerFlag == 1){
@@ -196,13 +199,14 @@ $(document).ready(function(){
     });
 
 //? Vertical Position CH1 -----------------------------------------------------------------------------------
-
+// TODO - Corrigir bug que faz desaparecer a forma de onda (se ela tiver dcSignal), quando a posição vertical é <= 0
     $("#verticalPositionCH1").click(function(){
         if(offCanvas == 1){ turnOffOffcanvas();}
         else if(powerFlag == 1){
             // Increments the vertical scale of channel 1
             if(CH1Display == 1){
                 verticalPositionValueCH1 += 0.05;
+                trigger.position += 0.05;
                 verticalPositionCH1();
             }
             else{
@@ -217,6 +221,7 @@ $(document).ready(function(){
             if(CH1Display == 1){
                 e.preventDefault();
                 verticalPositionValueCH1 -= 0.05;
+                trigger.position -= 0.05;
                 verticalPositionCH1();
             }
             else{
@@ -225,32 +230,34 @@ $(document).ready(function(){
         }
         else{ checkAndAlertOscilloscopeStatus(); }
     });
-    $("#verticalPositionCH1").on("wheel", function(e) {
-        if(powerFlag == 1){
-            // Increments the vertical scale of channel 1 when scrolling up
-            if (e.originalEvent.deltaY < 0) {
-                if(CH1Display == 1){
-                    verticalPositionValueCH1 += 0.01;
-                    verticalPositionCH1();
-                }
-            }
-            // Decrements the vertical scale of channel 1 when scrolling down
-            else if (e.originalEvent.deltaY > 0) {
-                if (CH1Display == 1) {
-                    verticalPositionValueCH1 -= 0.01;
-                    verticalPositionCH1();
-                }
-            }
-        }
-    });
+    // $("#verticalPositionCH1").on("wheel", function(e) {
+    //     if(powerFlag == 1){
+    //         // Increments the vertical scale of channel 1 when scrolling up
+    //         if (e.originalEvent.deltaY < 0) {
+    //             if(CH1Display == 1){
+    //                 verticalPositionValueCH1 += 0.01;
+    //                 trigger.position += 0.01;
+    //                 verticalPositionCH1();
+    //             }
+    //         }
+    //         // Decrements the vertical scale of channel 1 when scrolling down
+    //         else if (e.originalEvent.deltaY > 0) {
+    //             if (CH1Display == 1) {
+    //                 verticalPositionValueCH1 -= 0.01;
+    //                 trigger.position -= 0.01;
+    //                 verticalPositionCH1();
+    //             }
+    //         }
+    //     }
+    // });
     
     //When the mouse enters the vertical position of channel 1, the body becomes unscrollable, needed for the mousewheel event
-    $("#verticalPositionCH1").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#verticalPositionCH1").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#verticalPositionCH1").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#verticalPositionCH1").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
 //? Vertical Position CH2 -----------------------------------------------------------------------------------
     $("#verticalPositionCH2").click(function(){
         if(offCanvas == 1){ turnOffOffcanvas();}
@@ -280,31 +287,31 @@ $(document).ready(function(){
         }
         else{ checkAndAlertOscilloscopeStatus(); }
     });
-    $("#verticalPositionCH2").on("wheel", function(e) {
-        if(powerFlag == 1){
-            // Increments the vertical scale of channel 2 when scrolling up
-            if (e.originalEvent.deltaY < 0) {
-                if(CH2Display == 1){
-                    verticalPositionValueCH2 += 0.01;
-                    verticalPositionCH2();
-                }
-            }
-            // Decrements the vertical scale of channel 2 when scrolling down
-            else if (e.originalEvent.deltaY > 0) {
-                if (CH2Display == 1) {
-                    verticalPositionValueCH2 -= 0.01;
-                    verticalPositionCH2();
-                }
-            }
-        }
-    });
+    // $("#verticalPositionCH2").on("wheel", function(e) {
+    //     if(powerFlag == 1){
+    //         // Increments the vertical scale of channel 2 when scrolling up
+    //         if (e.originalEvent.deltaY < 0) {
+    //             if(CH2Display == 1){
+    //                 verticalPositionValueCH2 += 0.01;
+    //                 verticalPositionCH2();
+    //             }
+    //         }
+    //         // Decrements the vertical scale of channel 2 when scrolling down
+    //         else if (e.originalEvent.deltaY > 0) {
+    //             if (CH2Display == 1) {
+    //                 verticalPositionValueCH2 -= 0.01;
+    //                 verticalPositionCH2();
+    //             }
+    //         }
+    //     }
+    // });
     //When the mouse enters the vertical position of channel 2, the body becomes unscrollable, needed for the mousewheel event
-    $("#verticalPositionCH2").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#verticalPositionCH2").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#verticalPositionCH2").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#verticalPositionCH2").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
 //? Horizontal Position -------------------------------------------------------------------------------------
     $("#horizontalPosition").click(function(){
         if(offCanvas == 1){ turnOffOffcanvas();}
@@ -344,48 +351,49 @@ $(document).ready(function(){
         }
         else{ checkAndAlertOscilloscopeStatus(); }
     });
-    $("#horizontalPosition").on("wheel", function(e) {
-        if(powerFlag == 1){
-            // Increments the horizontal scale when scrolling up
-            if (e.originalEvent.deltaY < 0) {
-                if(horizontalSweep == 0){
-                    horizontalPositionValue += 0.025;
-                    horizontalPosition();
-                }
-                else if(horizontalSweep == 4){
-                    $("#alertMessage").css("display", "block");
-                    $("#alertMessage").text("Not support under this mode");
-                    if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
-                    timeoutId = setTimeout(() => { 
-                        $("#alertMessage").css("display", "none"); 
-                    }, 2000); // After 2 seconds, the alert message disappears
-                }
-            }
-            // Decrements the horizontal scale when scrolling down
-            else if (e.originalEvent.deltaY > 0) {
-                if(horizontalSweep == 0){
-                    horizontalPositionValue -= 0.025;
-                    horizontalPosition();
-                }
-                else if(horizontalSweep == 4){
-                    $("#alertMessage").css("display", "block");
-                    $("#alertMessage").text("Not support under this mode");
-                    if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
-                    timeoutId = setTimeout(() => { 
-                        $("#alertMessage").css("display", "none"); 
-                    }, 2000); // After 2 seconds, the alert message disappears
-                }
-            }
-        }
-    });
+    // $("#horizontalPosition").on("wheel", function(e) {
+    //     if(powerFlag == 1){
+    //         // Increments the horizontal scale when scrolling up
+    //         if (e.originalEvent.deltaY < 0) {
+    //             if(horizontalSweep == 0){
+    //                 horizontalPositionValue += 0.025;
+    //                 horizontalPosition();
+    //             }
+    //             else if(horizontalSweep == 4){
+    //                 $("#alertMessage").css("display", "block");
+    //                 $("#alertMessage").text("Not support under this mode");
+    //                 if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
+    //                 timeoutId = setTimeout(() => { 
+    //                     $("#alertMessage").css("display", "none"); 
+    //                 }, 2000); // After 2 seconds, the alert message disappears
+    //             }
+    //         }
+    //         // Decrements the horizontal scale when scrolling down
+    //         else if (e.originalEvent.deltaY > 0) {
+    //             if(horizontalSweep == 0){
+    //                 horizontalPositionValue -= 0.025;
+    //                 horizontalPosition();
+    //             }
+    //             else if(horizontalSweep == 4){
+    //                 $("#alertMessage").css("display", "block");
+    //                 $("#alertMessage").text("Not support under this mode");
+    //                 if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
+    //                 timeoutId = setTimeout(() => { 
+    //                     $("#alertMessage").css("display", "none"); 
+    //                 }, 2000); // After 2 seconds, the alert message disappears
+    //             }
+    //         }
+    //     }
+    // });
     //When the mouse enters the horizontal position, the body becomes unscrollable, needed for the mousewheel event
-    $("#horizontalPosition").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#horizontalPosition").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#horizontalPosition").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#horizontalPosition").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
 //? Oscilloscope Menus events -------------------------------------------------------------------------------
+    
     $("#autoSet").click(function(){
         if(offCanvas == 1){ turnOffOffcanvas(); }
         else if(powerFlag == 1){autoSet();}
@@ -479,6 +487,10 @@ $(document).ready(function(){
         if (measureAllCH1isDragging) {
             const x = e.pageX - startX;
             const y = e.pageY - startY;
+            if (x > 0.8 * window.innerWidth){ x = 0.8 * window.innerWidth; }
+            if (x < - (0.05 * window.innerWidth)){ x = - (0.05 * window.innerWidth); }
+            if (y > 0.8 * window.innerHeight){ y = 0.8 * window.innerHeight; }
+            if (y < 0.05 * window.innerHeight){ y = 0.05 * window.innerHeight; }
             measureAllCH1Offcanvas.css('left', `${x}px`);
             measureAllCH1Offcanvas.css('top', `${y}px`);
         }
@@ -528,6 +540,10 @@ $(document).ready(function(){
         if (measureAllCH2isDragging) {
             const x = e.pageX - startX;
             const y = e.pageY - startY;
+            if (x > 0.8 * window.innerWidth){ x = 0.8 * window.innerWidth; }
+            if (x < - (0.05 * window.innerWidth)){ x = - (0.05 * window.innerWidth); }
+            if (y > 0.8 * window.innerHeight){ y = 0.8 * window.innerHeight; }
+            if (y < 0.05 * window.innerHeight){ y = 0.05 * window.innerHeight; }
             measureAllCH2Offcanvas.css('left', `${x}px`);
             measureAllCH2Offcanvas.css('top', `${y}px`);
         }
@@ -627,7 +643,10 @@ $(document).ready(function(){
             else if(trigger.menu == 3){ // Trigger Slope / Coupling Menu On
                 trigger.slope++;
                 if(trigger.slope > 1){ trigger.slope = 0; }
-                if(mode == "simulation"){ updateTriggerSlopeMenu(); }
+                if(mode == "simulation"){ 
+                    updateTriggerSlopeMenu();
+                    updateChart1();
+                }
             }
             else if(horizontalMenuFlag == 1){
                 horizontalSweep = 0;
@@ -983,6 +1002,10 @@ $(document).ready(function(){
         if (signalGeneratorCH1isDragging) {
             const x = e.pageX - startX;
             const y = e.pageY - startY;
+            if (x > 0.5 * window.innerWidth){ x = 0.5 * window.innerWidth; }
+            if (x < - (0.05 * window.innerWidth)){ x = - (0.05 * window.innerWidth); }
+            if (y > 0.8 * window.innerHeight){ y = 0.8 * window.innerHeight; }
+            if (y < 0.05 * window.innerHeight){ y = 0.05 * window.innerHeight; }
             signalGeneratorOffcanvasCH1.css('left', `${x}px`);
             signalGeneratorOffcanvasCH1.css('top', `${y}px`);
         }
@@ -1031,6 +1054,10 @@ $(document).ready(function(){
         if (signalGeneratorCH2isDragging) {
             const x = e.pageX - startX;
             const y = e.pageY - startY;
+            if (x > 0.5 * window.innerWidth){ x = 0.5 * window.innerWidth; }
+            if (x < - (0.05 * window.innerWidth)){ x = - (0.05 * window.innerWidth); }
+            if (y > 0.8 * window.innerHeight){ y = 0.8 * window.innerHeight; }
+            if (y < 0.05 * window.innerHeight){ y = 0.05 * window.innerHeight; }
             signalGeneratorOffcanvasCH2.css('left', `${x}px`);
             signalGeneratorOffcanvasCH2.css('top', `${y}px`);
         }
@@ -1060,213 +1087,241 @@ $(document).ready(function(){
         triangularWaveCH2();
     });
     $("#frequencyCH1").click(function(){
-        frequencyValueCH1 += 0.01;
+        frequencyValueCH1 += 0.1;
         frequencySignalCH1();
     });
     $("#frequencyCH1").contextmenu(function(e){
         e.preventDefault();
-        frequencyValueCH1 -= 0.01;
+        frequencyValueCH1 -= 0.1;
         frequencySignalCH1();
     });
-    $("#frequencyCH1").on("wheel", function(e) {
-        e.preventDefault();
-        if (e.originalEvent.deltaY < 0) {
-            frequencyValueCH1 += 0.05;
-            frequencySignalCH1();
-        }
-        else if (e.originalEvent.deltaY > 0) {
-            frequencyValueCH1 -= 0.05;
-            frequencySignalCH1();
-        }
-    });
-    $("#frequencyCH1").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#frequencyCH1").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#frequencyCH1").on("wheel", function(e) {
+    //     e.preventDefault();
+    //     if (e.originalEvent.deltaY < 0) {
+    //         frequencyValueCH1 += 0.05;
+    //         frequencySignalCH1();
+    //     }
+    //     else if (e.originalEvent.deltaY > 0) {
+    //         frequencyValueCH1 -= 0.05;
+    //         frequencySignalCH1();
+    //     }
+    // });
+    // $("#frequencyCH1").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#frequencyCH1").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
     $("#frequencyCH2").click(function(){
-        frequencyValueCH2 += 0.01;
+        frequencyValueCH2 += 0.1;
         frequencySignalCH2();
     });
     $("#frequencyCH2").contextmenu(function(e){
         e.preventDefault();
-        frequencyValueCH2 -= 0.01;
+        frequencyValueCH2 -= 0.1;
         frequencySignalCH2();
     });
-    $("#frequencyCH2").on("wheel", function(e) {
-        e.preventDefault();
-        if (e.originalEvent.deltaY < 0) {
-            frequencyValueCH2 += 0.05;
-            frequencySignalCH2();
-        }
-        else if (e.originalEvent.deltaY > 0) {
-            frequencyValueCH2 -= 0.05;
-            frequencySignalCH2();
-        }
-    });
-    $("#frequencyCH2").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#frequencyCH2").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#frequencyCH2").on("wheel", function(e) {
+    //     e.preventDefault();
+    //     if (e.originalEvent.deltaY < 0) {
+    //         frequencyValueCH2 += 0.05;
+    //         frequencySignalCH2();
+    //     }
+    //     else if (e.originalEvent.deltaY > 0) {
+    //         frequencyValueCH2 -= 0.05;
+    //         frequencySignalCH2();
+    //     }
+    // });
+    // $("#frequencyCH2").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#frequencyCH2").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
     $("#1HzFreqCH1").click(function(){
         frequencypowerCH1 = 1;
+        $("#signalGeneratorSelectedFreqCH1").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH1").css("left", 645);
         frequencySignalCH1();
     });
     $("#1HzFreqCH2").click(function(){
         frequencypowerCH2 = 1;
+        $("#signalGeneratorSelectedFreqCH2").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH2").css("left", 645);
         frequencySignalCH2();
     });
     $("#10HzFreqCH1").click(function(){
         frequencypowerCH1 = 10;
+        $("#signalGeneratorSelectedFreqCH1").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH1").css("left", 602);
         frequencySignalCH1();
     });
     $("#10HzFreqCH2").click(function(){
         frequencypowerCH2 = 10;
+        $("#signalGeneratorSelectedFreqCH2").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH2").css("left", 602);
         frequencySignalCH2();
     });
     $("#100HzFreqCH1").click(function(){
         frequencypowerCH1 = 100;
+        $("#signalGeneratorSelectedFreqCH1").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH1").css("left", 560);
         frequencySignalCH1();
     });
     $("#100HzFreqCH2").click(function(){
         frequencypowerCH2 = 100;
+        $("#signalGeneratorSelectedFreqCH2").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH2").css("left", 560);
         frequencySignalCH2();
     });
     $("#1KHzFreqCH1").click(function(){
         frequencypowerCH1 = 1000;
+        $("#signalGeneratorSelectedFreqCH1").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH1").css("left", 518);
         frequencySignalCH1();
     });
     $("#1KHzFreqCH2").click(function(){
         frequencypowerCH2 = 1000;
+        $("#signalGeneratorSelectedFreqCH2").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH2").css("left", 518);
         frequencySignalCH2();
     });
     $("#10KHzFreqCH1").click(function(){
         frequencypowerCH1 = 10000;
+        $("#signalGeneratorSelectedFreqCH1").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH1").css("left", 478);
         frequencySignalCH1();
     });
     $("#10KHzFreqCH2").click(function(){
         frequencypowerCH2 = 10000;
+        $("#signalGeneratorSelectedFreqCH2").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH2").css("left", 478);
         frequencySignalCH2();
     });
     $("#100KHzFreqCH1").click(function(){
         frequencypowerCH1 = 100000;
+        $("#signalGeneratorSelectedFreqCH1").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH1").css("left", 433);
         frequencySignalCH1();
     });
     $("#100KHzFreqCH2").click(function(){
         frequencypowerCH2 = 100000;
+        $("#signalGeneratorSelectedFreqCH2").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH2").css("left", 433);
         frequencySignalCH2();
     });
     $("#1MHzFreqCH1").click(function(){
         frequencypowerCH1 = 1000000;
+        $("#signalGeneratorSelectedFreqCH1").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH1").css("left", 390);
         frequencySignalCH1();
     });
     $("#1MHzFreqCH2").click(function(){
         frequencypowerCH2 = 1000000;
+        $("#signalGeneratorSelectedFreqCH2").css("top", 115);
+        $("#signalGeneratorSelectedFreqCH2").css("left", 390);
         frequencySignalCH2();
     });
     $("#signalAmplitudeCH1").click(function(){
-        amplitudeValueCH1 += 0.01;
+        amplitudeValueCH1 += 0.1;
         amplitudeSignalCH1();
     });
     $("#signalAmplitudeCH1").contextmenu(function(e){
         e.preventDefault();
-        amplitudeValueCH1 -= 0.01;
+        amplitudeValueCH1 -= 0.1;
         amplitudeSignalCH1();
     });
-    $("#signalAmplitudeCH1").on("wheel", function(e) {
-        if (e.originalEvent.deltaY < 0) {
-            amplitudeValueCH1 += 0.05;
-            amplitudeSignalCH1();
-        }
-        else if (e.originalEvent.deltaY > 0) {
-            amplitudeValueCH1 -= 0.05;
-            amplitudeSignalCH1();
-        }
-    });
-    $("#signalAmplitudeCH1").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#signalAmplitudeCH1").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#signalAmplitudeCH1").on("wheel", function(e) {
+    //     if (e.originalEvent.deltaY < 0) {
+    //         amplitudeValueCH1 += 0.05;
+    //         amplitudeSignalCH1();
+    //     }
+    //     else if (e.originalEvent.deltaY > 0) {
+    //         amplitudeValueCH1 -= 0.05;
+    //         amplitudeSignalCH1();
+    //     }
+    // });
+    // $("#signalAmplitudeCH1").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#signalAmplitudeCH1").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
     $("#signalAmplitudeCH2").click(function(){
-        amplitudeValueCH2 += 0.01;
+        amplitudeValueCH2 += 0.1;
         amplitudeSignalCH2();
     });
     $("#signalAmplitudeCH2").contextmenu(function(e){
         e.preventDefault();
-        amplitudeValueCH2 -= 0.01;
+        amplitudeValueCH2 -= 0.1;
         amplitudeSignalCH2();
     });
-    $("#signalAmplitudeCH2").on("wheel", function(e) {
-        if (e.originalEvent.deltaY < 0) {
-            amplitudeValueCH2 += 0.05;
-            amplitudeSignalCH2();
-        }
-        else if (e.originalEvent.deltaY > 0) {
-            amplitudeValueCH2 -= 0.05;
-            amplitudeSignalCH2();
-        }
-    });
-    $("#signalAmplitudeCH2").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#signalAmplitudeCH2").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#signalAmplitudeCH2").on("wheel", function(e) {
+    //     if (e.originalEvent.deltaY < 0) {
+    //         amplitudeValueCH2 += 0.05;
+    //         amplitudeSignalCH2();
+    //     }
+    //     else if (e.originalEvent.deltaY > 0) {
+    //         amplitudeValueCH2 -= 0.05;
+    //         amplitudeSignalCH2();
+    //     }
+    // });
+    // $("#signalAmplitudeCH2").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#signalAmplitudeCH2").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
     $("#signalOffsetCH1").click(function(){
-        offsetValueCH1 += 0.01;
+        offsetValueCH1 += 0.1;
         offsetSignalCH1();
     });
     $("#signalOffsetCH1").contextmenu(function(e){
         e.preventDefault();
-        offsetValueCH1 -= 0.01;
+        offsetValueCH1 -= 0.1;
         offsetSignalCH1();
     });
-    $("#signalOffsetCH1").on("wheel", function(e) {
-        if (e.originalEvent.deltaY < 0) {
-            offsetValueCH1 += 0.05;
-            offsetSignalCH1();
-        }
-        else if (e.originalEvent.deltaY > 0) {
-            offsetValueCH1 -= 0.05;
-            offsetSignalCH1();
-        }
-    });
-    $("#signalOffsetCH1").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#signalOffsetCH1").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#signalOffsetCH1").on("wheel", function(e) {
+    //     if (e.originalEvent.deltaY < 0) {
+    //         offsetValueCH1 += 0.05;
+    //         offsetSignalCH1();
+    //     }
+    //     else if (e.originalEvent.deltaY > 0) {
+    //         offsetValueCH1 -= 0.05;
+    //         offsetSignalCH1();
+    //     }
+    // });
+    // $("#signalOffsetCH1").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#signalOffsetCH1").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
     $("#signalOffsetCH2").click(function(){
-        offsetValueCH2 += 0.01;
+        offsetValueCH2 += 0.1;
         offsetSignalCH2();
     });
     $("#signalOffsetCH2").contextmenu(function(e){
         e.preventDefault();
-        offsetValueCH2 -= 0.01;
+        offsetValueCH2 -= 0.1;
         offsetSignalCH2();
     });
-    $("#signalOffsetCH2").on("wheel", function(e) {
-        if (e.originalEvent.deltaY < 0) {
-            offsetValueCH2 += 0.05;
-            offsetSignalCH2();
-        }
-        else if (e.originalEvent.deltaY > 0) {
-            offsetValueCH2 -= 0.05;
-            offsetSignalCH2();
-        }
-    });
-    $("#signalOffsetCH2").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#signalOffsetCH2").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#signalOffsetCH2").on("wheel", function(e) {
+    //     if (e.originalEvent.deltaY < 0) {
+    //         offsetValueCH2 += 0.05;
+    //         offsetSignalCH2();
+    //     }
+    //     else if (e.originalEvent.deltaY > 0) {
+    //         offsetValueCH2 -= 0.05;
+    //         offsetSignalCH2();
+    //     }
+    // });
+    // $("#signalOffsetCH2").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#signalOffsetCH2").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
     $("#signalGeneratorPowerCH1").click(function(){
         inputCH1();
         turnOffOffcanvas(1);
@@ -1280,6 +1335,23 @@ $(document).ready(function(){
     // #horizontal Menu events ------------------------------------------------------------------------------------
     // #variable events ------------------------------------------------------------------------------------
 //? #verticalScales event -----------------------------------------------------------------------------------
+/*
+    $("#verticalScaleCH1").click(function(){
+        if(offCanvas == 1){ turnOffOffcanvas();}
+        else if(powerFlag == 1){
+            // Increments the vertical scale of channel 1
+            if(CH1Display == 1){
+                $("#verticalScaleCH1OffCanvas").css("display", "block");
+                verticalScaleCH1OffCanvas();
+            }
+            else{
+                //alert("Channel 1 is off!"); //Modificar o alert para ser algo mais apresentável *******************************************
+            }
+        }
+        else{ checkAndAlertOscilloscopeStatus(); }
+    });
+*/
+ 
     $("#verticalScaleCH1").click(function(){
         if(offCanvas == 1){ turnOffOffcanvas();}
         else if(powerFlag == 1){
@@ -1294,6 +1366,7 @@ $(document).ready(function(){
         }
         else{ checkAndAlertOscilloscopeStatus(); }
     });
+
     $("#verticalScaleCH1").contextmenu(function(e){
         if(powerFlag == 1){
             // Decrements the vertical scale of channel 1
@@ -1308,31 +1381,31 @@ $(document).ready(function(){
         }
         else{ checkAndAlertOscilloscopeStatus(); }
     });
-    $("#verticalScaleCH1").on("wheel", function(e) {
-        if(powerFlag == 1){
-            // Increments the vertical scale of channel 1 when scrolling up
-            if (e.originalEvent.deltaY < 0) {
-                if(CH1Display == 1){
-                    verticalScaleValueCH1++;
-                    verticalScaleCH1();
-                }
-            }
-            // Decrements the vertical scale of channel 1 when scrolling down
-            else if (e.originalEvent.deltaY > 0) {
-                if (CH1Display == 1) {
-                    verticalScaleValueCH1--;
-                    verticalScaleCH1();
-                }
-            }
-        }
-    });
-    //When the mouse enters the vertical scale of channel 1, the body becomes unscrollable, needed for the mousewheel event
-    $("#verticalScaleCH1").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#verticalScaleCH1").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#verticalScaleCH1").on("wheel", function(e) {
+    //     if(powerFlag == 1){
+    //         // Increments the vertical scale of channel 1 when scrolling up
+    //         if (e.originalEvent.deltaY < 0) {
+    //             if(CH1Display == 1){
+    //                 verticalScaleValueCH1++;
+    //                 verticalScaleCH1();
+    //             }
+    //         }
+    //         // Decrements the vertical scale of channel 1 when scrolling down
+    //         else if (e.originalEvent.deltaY > 0) {
+    //             if (CH1Display == 1) {
+    //                 verticalScaleValueCH1--;
+    //                 verticalScaleCH1();
+    //             }
+    //         }
+    //     }
+    // });
+    // //When the mouse enters the vertical scale of channel 1, the body becomes unscrollable, needed for the mousewheel event
+    // $("#verticalScaleCH1").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#verticalScaleCH1").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
     //--------------------------------------------------------------------------------------------------------------------------------
     $("#verticalScaleCH2").click(function(){
         if(offCanvas == 1){ turnOffOffcanvas();}
@@ -1362,31 +1435,31 @@ $(document).ready(function(){
         }
         else{ checkAndAlertOscilloscopeStatus(); }
     });
-    $("#verticalScaleCH2").on("wheel", function(e) {
-        if(powerFlag == 1){
-            // Increments the vertical scale of channel 2 when scrolling up
-            if (e.originalEvent.deltaY < 0) {
-                if(CH2Display == 1){
-                    verticalScaleValueCH2++;
-                    verticalScaleCH2();
-                }
-            }
-            // Decrements the vertical scale of channel 2 when scrolling down
-            else if (e.originalEvent.deltaY > 0) {
-                if(CH2Display == 1){
-                    verticalScaleValueCH2--;
-                    verticalScaleCH2();
-                }
-            }
-        }
-    });
-    //When the mouse enters the vertical scale of channel 2, the body becomes unscrollable, needed for the mousewheel event
-    $("#verticalScaleCH2").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#verticalScaleCH2").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#verticalScaleCH2").on("wheel", function(e) {
+    //     if(powerFlag == 1){
+    //         // Increments the vertical scale of channel 2 when scrolling up
+    //         if (e.originalEvent.deltaY < 0) {
+    //             if(CH2Display == 1){
+    //                 verticalScaleValueCH2++;
+    //                 verticalScaleCH2();
+    //             }
+    //         }
+    //         // Decrements the vertical scale of channel 2 when scrolling down
+    //         else if (e.originalEvent.deltaY > 0) {
+    //             if(CH2Display == 1){
+    //                 verticalScaleValueCH2--;
+    //                 verticalScaleCH2();
+    //             }
+    //         }
+    //     }
+    // });
+    // //When the mouse enters the vertical scale of channel 2, the body becomes unscrollable, needed for the mousewheel event
+    // $("#verticalScaleCH2").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#verticalScaleCH2").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
 //?----------------------------------------------------------------------------------------------------------
 //? #horizontalScale event ----------------------------------------------------------------------------------
     $("#horizontalScale").click(function(){
@@ -1427,48 +1500,48 @@ $(document).ready(function(){
         }
         else{ checkAndAlertOscilloscopeStatus(); }
     });
-    $("#horizontalScale").on("wheel", function(e) {
-        if(powerFlag == 1){
-            // Increments the horizontal scale when scrolling up
-            if (e.originalEvent.deltaY < 0) {
-                if(horizontalSweep == 0){
-                    horizontalScaleValue++;
-                    horizontalScale();
-                }
-                else if(horizontalSweep == 4){
-                    $("#alertMessage").css("display", "block");
-                    $("#alertMessage").text("Not support under this mode");
-                    if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
-                    timeoutId = setTimeout(() => { 
-                        $("#alertMessage").css("display", "none"); 
-                    }, 2000); // After 2 seconds, the alert message disappears
-                }
-            }
-            // Decrements the horizontal scale when scrolling down
-            else if (e.originalEvent.deltaY > 0) {
-                if(horizontalSweep == 0){
-                    horizontalScaleValue--;
-                    horizontalScale();
-                }
-                else if(horizontalSweep == 4){
-                    $("#alertMessage").css("display", "block");
-                    $("#alertMessage").text("Not support under this mode");
-                    if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
-                    timeoutId = setTimeout(() => { 
-                        $("#alertMessage").css("display", "none"); 
-                    }, 2000); // After 2 seconds, the alert message disappears
-                }
-            }
-        }
-    });
-    //When the mouse enters the horizontal scale, the body becomes unscrollable, needed for the mousewheel event
-    //TODO - Simplificar todos os mouseenter para ficarem num só
-    $("#horizontalScale").mouseenter(function(){
-        $("body").addClass("no-scroll");
-    });
-    $("#horizontalScale").mouseleave(function(){
-        $("body").removeClass("no-scroll");
-    });
+    // $("#horizontalScale").on("wheel", function(e) {
+    //     if(powerFlag == 1){
+    //         // Increments the horizontal scale when scrolling up
+    //         if (e.originalEvent.deltaY < 0) {
+    //             if(horizontalSweep == 0){
+    //                 horizontalScaleValue++;
+    //                 horizontalScale();
+    //             }
+    //             else if(horizontalSweep == 4){
+    //                 $("#alertMessage").css("display", "block");
+    //                 $("#alertMessage").text("Not support under this mode");
+    //                 if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
+    //                 timeoutId = setTimeout(() => { 
+    //                     $("#alertMessage").css("display", "none"); 
+    //                 }, 2000); // After 2 seconds, the alert message disappears
+    //             }
+    //         }
+    //         // Decrements the horizontal scale when scrolling down
+    //         else if (e.originalEvent.deltaY > 0) {
+    //             if(horizontalSweep == 0){
+    //                 horizontalScaleValue--;
+    //                 horizontalScale();
+    //             }
+    //             else if(horizontalSweep == 4){
+    //                 $("#alertMessage").css("display", "block");
+    //                 $("#alertMessage").text("Not support under this mode");
+    //                 if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
+    //                 timeoutId = setTimeout(() => { 
+    //                     $("#alertMessage").css("display", "none"); 
+    //                 }, 2000); // After 2 seconds, the alert message disappears
+    //             }
+    //         }
+    //     }
+    // });
+    // //When the mouse enters the horizontal scale, the body becomes unscrollable, needed for the mousewheel event
+    // //TODO - Simplificar todos os mouseenter para ficarem num só
+    // $("#horizontalScale").mouseenter(function(){
+    //     $("body").addClass("no-scroll");
+    // });
+    // $("#horizontalScale").mouseleave(function(){
+    //     $("body").removeClass("no-scroll");
+    // });
 //?----------------------------------------------------------------------------------------------------------
 //? CH1 and CH2 Menus: ----------------------------------------------------------------------------------------
     $("#ch1-button").click(function(){

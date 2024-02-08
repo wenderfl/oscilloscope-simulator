@@ -1,0 +1,132 @@
+<%- include('partials/header') %>
+<div class="navbar">
+    <h1 id="pageTitle">Oscilloscope Interface</h1>
+    <a href="/support" id="support">Support</a>
+</div>
+
+<div class="about">
+  <h2>Credits</h2>
+  <p>
+    This web application has been designed and implemented by João Ferreira, 
+    in the context of his Bachelor project on ECE, at ISEP 
+    <a href="/files/Relatorio_PESTA_Joao_Ferreira_1190729.pdf" download>[J. Ferreira, 2023]</a>, 
+    under the supervision of Professors Mário Alves and André Rocha, which contributed with the original 
+    idea, application requirements, software architecture, system designers and alpha testers. 
+    This project builds on previous work from the following former ISEP students:
+  </p>
+  <ul>
+    <li>
+        <b>Pedro Salgueiro</b>, who developed an analogue oscilloscope 
+        simulator back in 2005 <a href="/files/Relatorio_PESTA_Pedro_Salgueiro.pdf" download>[P. Salgueiro, 2005]</a>, 
+        featuring a panoply of relevant functionality and being extremely useful and massively used for more than a decade;
+    </li>
+    <li>
+        <b>João Pereira</b>, who has implemented a simulator for this same Oscilloscope, 
+        but as a stand-alone application (requiring PC installation) and with some restrictive bugs/limitations, 
+        in 2015 <a href="/files/Relatorio_PESTA_Joao_Pereira.pdf" download>[J. Pereira, 2015]</a>. 
+        Again, this simulator has been used by thousands of ISEP students for almost a decade.
+    </li>
+  </ul>
+  <p>
+    Comparing to its "antecessors", both the software architecture's and application's quality, 
+    functionality and robustness have been much improved, so it will replace them for our academic purposes.
+  </p>
+  <h2>About the App</h2>
+  <p>
+    This web application mimics the graphical user interface (GUI) and operation of the 
+    GW-Instek GDS2062 Oscilloscope <a href="/files/Manual_Osciloscopio.pdf" download>[Oscilloscope Manual]</a>, 
+    which is the one equipping the Laboratory of Electrical Circuits and Signals ("Laboratório de Circuitos e Sinais Elétricos"), 
+    of the Electrical Engineering Department at ISEP. It enables two operation modes:
+  </p>
+  <h3>Simulation</h3>
+  <ul>
+    <li>
+      Including signal stimulus from a Signal Generator 
+      (mirroring the one used the lab), calibration and CSV file
+    </li>
+  </ul>
+  <h3>Remote acquisition/control</h3>
+  <ul>
+    <li>
+      Permits the remote signal/waveform 
+      acquisition and command control of the Oscilloscope
+    </li>
+  </ul>
+  <p>
+    This application has been developed in a client-server architecture with Node.js, using the Javascript, HTML and CSS programming and markup languages respectivelly 
+    and IDE/editor Visual Studio Code and is publicly available as open source at <a href="https://github.com/urisolve/oscilloscope-simulator">[GitHub (Not yet)]</a>
+  </p>
+  <h2>Objectives</h2>
+<p>
+  This application enables to be used:
+</p>
+<ul>
+  <li>
+    as a <b>self-learning tool</b> of the basic operation and functionality of an Oscilloscope and Signal Generator;
+  </li>
+  <li>
+    as a <b>teaching tool</b>, either in-class or off-class, for instance to produce waveforms for teaching material such as slides, exercise books, lab scripts or exams
+  </li>
+  <li>
+    to easily (locally or remotely) <b>capture real circuit signals for further analysis</b>, processing and visualization, for didactic or any other purposes;
+  </li>
+  <li>
+    to implement <b>remote lab experiments</b> (using the Oscilloscpe), for didatic and other aims
+  </li>
+</ul>
+<h2>Version Control Table</h2>
+  <div id="releaseNotes">
+
+  </div>
+</div>
+
+<script>
+  const releaseNotesContainer = document.getElementById('releaseNotes');
+
+  fetch('/release-notes.json')
+    .then(response => response.json())
+    .then(data => {
+ 
+      data.versions.reverse();
+      
+      data.versions.forEach(version => {
+          const versionElement = document.createElement('div');
+          versionElement.classList.add('version');
+          versionElement.innerHTML = `
+            <h3>
+              <span class="toggle-button" onclick="toggleDetails(this)">
+                [Toggle]
+              </span>
+              Version ${version.version}
+            </h3>
+            <div class="version-details">
+              <p>Release Date: ${version.release_date}</p>
+            </div>
+          `;
+
+          version.changes.forEach(change => {
+            const categoryElement = document.createElement('div');
+            categoryElement.classList.add('category');
+            categoryElement.innerHTML = `
+              <p>${change.description}</p>
+              <ul class="changes-list">
+                ${change.items.map(item => `<li class="change-item">${item}</li>`).join('')}
+              </ul>
+            `;
+            versionElement.querySelector('.version-details').appendChild(categoryElement);
+          });
+
+          releaseNotesContainer.appendChild(versionElement);
+        });
+      })
+      .catch(error => console.error('Error fetching release notes:', error));
+
+    function toggleDetails(button) {
+      const versionDetails = button.parentElement.nextElementSibling;
+      versionDetails.style.display = (versionDetails.style.display === 'none' || versionDetails.style.display === '') ? 'block' : 'none';
+    }
+
+</script>
+
+
+<%- include('partials/footer') %>

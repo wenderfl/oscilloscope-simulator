@@ -1,6 +1,14 @@
 <%- include('partials/header') %>
-<h1 id="pageTitle">Oscilloscope Interface</h1>
+<div class="navbar">
+    <h1 id="pageTitle">Oscilloscope Interface</h1>
+    <a href="/support" id="support">Support</a>
+</div>
+<div class = "background-design">
+    <img src="images/Background_teste.jpg" draggable="false" alt="background" id="background">
+</div>
+
     <div class="oscilloscope">
+        <!-- <div class="background-center"></div> -->
         <img src="images/oscilloscope.png" draggable="false" alt="oscilloscope" id="oscilloscope" usemap ="#oscilloscopeMap">
         <%- include('imagemap/oscilloscopeMap') %>
         <img src="images/ch1-button.png" draggable="false" alt="ch1-button" id="ch1-button">
@@ -24,11 +32,11 @@
             <img src="images/ch2-dc.png" draggable="false" alt="ch2-dc" id="ch2-dc">
             <p id="time-horizontalScale"></p>
             <img src="images/stop.png" draggable="false" alt="stop" id="stop">
-            <!-- <p id="signalFrequency"></p> -->
+            <p id="ch1-signal-frequency"></p>
+            <p id="ch2-signal-frequency"></p>
             <p id="trigger-source"></p>
             <p id="trigger-type"></p>
-            <!-- <p id="trigger-slope"></p>
-            <p id="trigger-polarity"></p> -->
+            <img src="images/trigger-slope.png" draggable="false" alt="trigger-slope" id="trigger-slope">
             <%- include('partials/texts') %>
             <div class="waveforms">
                 <img src="images/background-image.png" draggable="false" alt="background-image" id="background-image">
@@ -50,6 +58,7 @@
         <%- include('offcanvas/signal-generator-CH2') %>
         <%- include('offcanvas/hardcopy-offcanvas') %>
         <%- include('offcanvas/measureAll') %>
+        <%- include('offcanvas/verticalscalech1-offcanvas') %>
         <input type="file" id="csvFileInput" style="display: none;">
     </div>
       

@@ -1,20 +1,13 @@
-const verticalScaleList = ["2.000E-3", "5.000E-3", "1.000E-2", "2.000E-2", "5.000E-2", "1.000E-1", "2.000E-1", "5.000E-1", "1.000E+0", "2.000E+0", "5.000E+0"];
-const horizontalScaleList = ["1.000E-9", "2.500E-9", "5.000E-9", "1.000E-8", "2.500E-8", "5.000E-8", "1.000E-7", "2.500E-7", "5.000E-7", "1.000E-6", "2.500E-6", "5.000E-6", "1.000E-5", "2.500E-5", "5.000E-5", "1.000E-4", "2.500E-4", "5.000E-4", "1.000E-3", "2.500E-3", "5.000E-3", "1.000E-2", "2.500E-2", "5.000E-2", "1.000E-1", "2.500E-1", "5.000E-1", "1.000E+0", "2.500E+0", "5.000E+0", "1.000E+1"];
 //TODO - Variáveis globais que sejam usadas em ambos os modos e com os mesmos valores, perceber como atribuir o mesmo valor a duas variáveis de forma mais simples
 //TODO - Nos css adaptar os valores que dependam umas das outras para serem todos uma só variável
 
 // TODO - Modificar as variáveis para objetos por exemplo as relacionadas com o measure todas numa classe. Assim é mais fácil de perceber o que é que cada uma faz.
 // TODO - Simplificar as variáveis globais, neste momento tenho muitas...
 
-var powerFlag = 0;
 var numPeriods = 100;
 var mode = null;
-var intervalRefData = 0;
-var intervalRefCH1 = 0;
-var intervalRefCH2 = 0;
-var intervalRefWaves = 0;
 var svg1, svg2, svg3;
-var verticalScaleValueCH1 = 6;
+
 var verticalScaleCH1_Value = 0.2;
 var verticalScaleCH1_Value_Real = 0;
 var verticalPositionValueCH1 = 0;
@@ -25,73 +18,102 @@ var verticalPositionValueCH2 = 0;
 var horizontalScaleValue = 15;
 var horizontalScale_Value = 0;
 var horizontalPositionValue = 0;
-var CH1Display = 0;
-var CH2Display = 0;
+
+var timeCH1 = 0;
+var freqCH1 = 0;
+var timeCH2 = 0;
+var freqCH2 = 0;
+
+// TODO - Estas variáveis já foram substituídas, contudo é preciso testar se tudo funciona.
+//* CH1 Related
 var CH1MenuFlag = 0;
+var couplingValueCH1 = 0;
+var invertValueCH1 = 0;
+var probeValueCH1 = 0;
+
+var vMinCH1 = 0;
+var vMaxCH1 = 0;
+var vAvgCH1 = 0;
+var vRmsCH1 = 0;
+var vampCH1 = 0;
+var vppCH1 = 0;
+var frequencyCH1 = 0;
+var periodCH1 = 0;
+
+var CH1Display = 0;
+var verticalScaleValueCH1 = 6;
+var CH1Data = [];
+var CH1BaseData = [];
+
+//* CH2 Related
+var CH2MenuFlag = 0;
+var couplingValueCH2 = 0;
+var invertValueCH2 = 0;
+var probeValueCH2 = 0;
+
+var vMinCH2 = 0;
+var vMaxCH2 = 0;
+var vAvgCH2 = 0;
+var vRmsCH2 = 0;
+var vampCH2 = 0;
+var vppCH2 = 0;
+var frequencyCH2 = 0;
+var periodCH2 = 0;
+
+var CH2Display = 0;
+var CH2Data = [];
+var CH2BaseData = [];
+
+//* Interval related
+
+var intervalRefData = 0;
+var intervalRefCH1 = 0;
+var intervalCH1flag = 0;
+var intervalRefCH2 = 0;
+var intervalCH2flag = 0;
+var intervalRefWaves = 0;
+
+//* Trigger Menu related
+
+var triggerTypeValue = 0;
+var triggerSourceValue = 0;
+var triggerLevelValue = 0;
+var triggerSlopeValue = 0;
+
+// Not added
+var triggerLevelPosition = 0;
+var triggerLevelVolt = 0;
+
+//* Flags related
+
+var powerFlag = 0;
+
+//* Math related
+
 var mathMenuFlag = 0;
 var mathOperationValue = 0;
 var mathOrderValue = 0;
 var mathDataFlag = 0;
-var couplingValueCH1 = 0;
-var couplingValueCH2 = 0;
-var invertValueCH1 = 0;
-var invertValueCH2 = 0;
-var probeValueCH1 = 0;
-var probeValueCH2 = 0;
-var CH2MenuFlag = 0;
+
+//* Measure menu related
+
 var measureFlag = 0;
 var measureAllCH1Flag = 0;
 var measureAllCH2Flag = 0;
 var sourceValue = 0;
 var voltTypeValue = 0;
 var timeTypeValue = 0;
-var intervalCH1flag = 0;
-var intervalCH2flag = 0;
+
+
 var amplitudeCH1_Value = 1;
 var amplitudeCH2_Value = 1;
-const trigger = {
-    menu: 0,
-    type: 0,
-    source: 0,
-    level: 0,
-    slope: 0,
-    coupling: 0,
-    mode: 0,
-    standard: 0,
-    polarity: 0,
-    rejection: 0,
-    noiseRej: 0,
-}
-var triggerLevelValue = 0;
-var triggerLevelVolt = 0;
-var triggerSlopeValue = 0;
-var triggerLevelPosition = 0;
-var triggerTypeValue = 0;
-var triggerSourceValue = 0;
+
+
+
 var timeTraveledCH1 = 0;
 var distanceTraveledCH1 = 0;
 var timeTraveledCH2 = 0;
 var distanceTraveledCH2 = 0;
-var vMaxCH1 = 0;
-var vMaxCH2 = 0;
-var vMinCH1 = 0;
-var vMinCH2 = 0;
-var vRmsCH1 = 0;
-var vRmsCH2 = 0;
-var vAvgCH1 = 0;
-var vAvgCH2 = 0;
-var vppCH1 = 0;
-var vppCH2 = 0;
-var vampCH1 = 0;
-var vampCH2 = 0;
-var timeCH1 = 0;
-var freqCH1 = 0;
-var timeCH2 = 0;
-var freqCH2 = 0;
-var frequencyCH1 = 0;
-var frequencyCH2 = 0;
-var periodCH1 = 0;
-var periodCH2 = 0;
 var offCanvas = 0;
 var timeoutId = 0;
 var timeIntervalCH1 = 0;
@@ -104,157 +126,28 @@ var acquireMemLengValue = 0;
 var horizontalMenuFlag = 0;
 var csvData = [];
 var dcSignal = [];
-var CH1Data = [];
-var CH1BaseData = [];
-var CH2Data = [];
-var CH2BaseData = [];
+
 var mathData = [];
-var dir = [];
-var val = [];
-var wave = [];
-var time = [];
+
+let time = [];
 for(i=0; i<250; i++){
     time[i] = i;
 }
 //TODO - Adaptar para ter as funções que existem em ambos os modos e ter um if para cada modo
-//? Global functions
-function hexToValue(hexString) {
-    let buffer = new ArrayBuffer(4);
-    let dataView = new DataView(buffer);
+// TODO - Simplificar a função updateChartReal pois tem passos repetidos em ambos os canais
+// TODO - Modificadas as variáveis do ch1 para as classes, testar se ficou tudo ok
+// TODO - Na função askData, definir quais if's se mantém, pelo menos tem de ter o geral e depois deverá ter o do modo de simulação e aquisição
 
-    dataView.setUint8(0, hexString[3]);
-    dataView.setUint8(1, hexString[2]);
-    dataView.setUint8(2, hexString[1]);
-    dataView.setUint8(3, hexString[0]);
+//? ------------------- Interface Related  ------------------- //
 
-    let floatValue = dataView.getFloat32(0, true); // The second parameter (true) is for little endian
-
-    return floatValue.toExponential(3);
+function toggleInterface() { //* Toggle interface on/off, used with the power button
+    if($('.interface').css('opacity') == 0) { $('.interface').css('opacity', 1); }
+    else { $('.interface').css('opacity', 0); }
 }
-function updateChartReal(channel, val, dir) {
-    if (channel == 1) {
-        for(let i=125; i<375; i++){
-            if(dir[i] == 0){ wave[i-125] = val[i]; }
-            else if(dir[i] == 255){ wave[i-125] = val[i] - 255; }
-        }
-        let value = verticalScaleCH1_Value_Real*4;
-        for(let i=0; i<250; i++){ wave[i] = (wave[i] * value)/102.4; } // 128 is the value used for 5 divs so 102.4 is the value for 4 divs
-        CH1BaseData = [];
-        let timeCH1 = [];
-        for(let i=0; i<250; i++){ timeCH1[i] = time[i] * timeIntervalCH1; }
-        CH1BaseData[0] = ["Time", "Amplitude"];
-        for (let i = 1; i <= wave.length; i++){ CH1BaseData.push([timeCH1[i], wave[i]]); }
-        CH1Data = [];
-        const keys = CH1BaseData[0];
-        for (let i = 1; i < CH1BaseData.length-1; i++) {
-            const values = CH1BaseData[i];
-            const object = {};
-            keys.forEach((key, index) => { object[key] = values[index]; });
-            CH1Data.push(object);
-        }
-        if(CH1Display == 1){ $("#myChart1").css("opacity", 1); }
-        else if(CH1Display == 0){ $("#myChart1").css("opacity", 0); }
-        showGraph1Real(CH1Data);
-    }
-    if (channel == 2) {
-        for(let i=125; i<375; i++){
-            if(dir[i] == 0){ wave[i-125] = val[i]; }
-            else if(dir[i] == 255){ wave[i-125] = val[i] - 255; }
-        }
-        let value = verticalScaleCH2_Value_Real*4;
-        for(let i=0; i<250; i++){ wave[i] = (wave[i] * value)/102.4; } // 128 is the value used for 5 divs so 102.4 is the value for 4 divs
-        CH2BaseData = [];
-        let timeCH2 = [];
-        for(let i=0; i<250; i++){ timeCH2[i] = time[i] * timeIntervalCH2; }
-        CH2BaseData[0] = ["x", "y"];
-        for (let i = 1; i <= wave.length; i++) { CH2BaseData.push([timeCH2[i], wave[i]]); }
-        CH2Data = [];
-        const keys = CH2BaseData[0];
-        for (let i = 1; i < CH2BaseData.length-1; i++) {
-            const values = CH2BaseData[i];
-            const object = {};
-            keys.forEach((key, index) => { object[key] = values[index]; });
-            CH2Data.push(object);
-        }
-        if(CH2Display == 1){ $("#myChart2").css("opacity", 1); }
-        else if(CH2Display == 0){ $("#myChart2").css("opacity", 0); }
-        showGraph2Real(CH2Data);
-    }
-}
-function askData(data){
-    if(data == "CH1"){ sendGetRequest("/CH1Data"); }
-    else if(data == "CH2"){ sendGetRequest("/CH2Data"); }
-    else if(data == "measure"){ sendGetRequest("/measureData"); }
-    else{ sendGetRequest("/data"); }
-}
-function waveform1(){
-    sendGetRequest("/acq/mem1");
-}
-function waveform2(){
-    sendGetRequest("/acq/mem2");
-}
-function waves(){
-    // TODO - Definir um intervalo de tempo que tenha em conta o tamanho do pedido e canais ligados.
-    //let intervalTime = (verticalDisplayCH1 * 2000) + (verticalDisplayCH2 * 2000);
-    if(CH1Display == 1 && intervalCH1flag == 0){
-        intervalRefCH1 = setInterval(waveform1, 1000); // Valor 1 segundo quando apenas 1 canal estiver ligado 2 segundos para 2 canais. 500ms é muito bom
-        document.getElementById('myChart1').style.display = "block";
-        intervalCH1flag = 1;
-    }
-    if(CH1Display == 0 && intervalCH1flag == 1){
-        clearInterval(intervalRefCH1);
-        document.getElementById('myChart1').style.display = "none";
-        intervalCH1flag = 0;
-    }
-    if(CH2Display == 1 && intervalCH2flag == 0){
-        intervalRefCH2 = setInterval(waveform2, 1000); // Valor 1 segundo quando apenas 1 canal estiver ligado 2 segundos para 2 canais
-        document.getElementById('myChart2').style.display = "block";
-        intervalCH2flag = 1;
-    }
-    if(CH2Display == 0 && intervalCH2flag == 1){
-        clearInterval(intervalRefCH2);
-        document.getElementById('myChart2').style.display = "none";
-        intervalCH2flag = 0;
-    }
-}
-function sendPostRequest(URL, value) {
-    $.ajax({
-        url: URL,
-        data: JSON.stringify({
-            data: value
-        }),  
-        method: 'POST',
-        contentType: 'application/json',
-        timeout: 5000,
-        success: function(response) {
-            handleResponse(response);
-        },
-        error: function(error) {
-            alert("Error! " + error.status + " - " + error.statusText);
-        }
-    });
-}
-function sendGetRequest(URL) {
-    $.ajax({
-        url: URL,  
-        method: 'GET',
-        contentType: 'application/json',
-        timeout: 5000,
-        success: function(response) {
-            handleResponse(response);
-        },
-        error: function(error) {
-            alert("Error! " + error.status + " - " + error.statusText);
-        }
-    });
-}
-function toggleInterface() { // Toggle interface on/off, used with the power button
-    if($('.interface').css('opacity') == 0) {$('.interface').css('opacity', 1);}
-    else {$('.interface').css('opacity', 0);}
-}
-function decreaseOpacity() { // Decrease opacity and changes the cursors when offcanvas is open
+// TODO - Acrescentar os novos casos que se possam vir a criar.
+function decreaseOpacity() { //* Decrease opacity and changes the cursors when offcanvas is open
     $("#oscilloscope").css("opacity", "0.6");
-    if($(".interface").css("opacity") == 1) { $(".interface").css("opacity", "0.6");}
+    if($(".interface").css("opacity") == 1) { $(".interface").css("opacity", "0.6"); }
     if($("#ch1-button").css("opacity") == 1) { $("#ch1-button").css("opacity", "0.6"); }
     if($("#ch2-button").css("opacity") == 1) { $("#ch2-button").css("opacity", "0.6"); }
     if($("#CH1Input").css("opacity") == 1) { $("#CH1Input").css("opacity", "0.6"); }
@@ -264,18 +157,21 @@ function decreaseOpacity() { // Decrease opacity and changes the cursors when of
     $("#ch1-button, #ch2-button").css("cursor", "not-allowed");
     $("#CH1Input, #CH2Input").css("cursor", "not-allowed");
 }
-function turnOffOffcanvas(signalGenerator) {
+// TODO - Acrescentar futuros casos que se possam vir a criar.
+function turnOffOffcanvas(signalGenerator) { //* Put everything back to normal after closing an Offcanvas
+// Hides all the menus offcanvas
     $("#modeOffcanvas, #inputOffcanvas-ch1, #inputOffcanvas-ch2, #hardcopyOffcanvas").css("display", "none");
-    if(signalGenerator == 1){ 
-        $("#signalGeneratorOffcanvasCH1").css("display", "none"); 
-    }
+// Used if the user wants to shut off the signal generator offcanvas
+    if(signalGenerator == 1){ $("#signalGeneratorOffcanvasCH1").css("display", "none"); }
     if(signalGenerator == 2){ $("#signalGeneratorOffcanvasCH2").css("display", "none"); }
-    $("#oscilloscope").css("opacity", "1");
-    if($(".interface").css("opacity") == 0.6) { $(".interface").css("opacity", "1");}
-    if($("#ch1-button").css("opacity") == 0.6) { $("#ch1-button").css("opacity", "1");}
-    if($("#ch2-button").css("opacity") == 0.6) { $("#ch2-button").css("opacity", "1");}
-    if($("#CH1Input").css("opacity") == 0.6) { $("#CH1Input").css("opacity", "1");}
-    if($("#CH2Input").css("opacity") == 0.6) { $("#CH2Input").css("opacity", "1");}
+// The opacity of everything that is on, goes back to 1.
+    $("#oscilloscope").css("opacity", 1);
+    if($(".interface").css("opacity") == 0.6){ $(".interface").css("opacity", 1); }
+    if($("#ch1-button").css("opacity") == 0.6){ $("#ch1-button").css("opacity", 1); }
+    if($("#ch2-button").css("opacity") == 0.6){ $("#ch2-button").css("opacity", 1); }
+    if($("#CH1Input").css("opacity") == 0.6){ $("#CH1Input").css("opacity", 1); }
+    if($("#CH2Input").css("opacity") == 0.6){ $("#CH2Input").css("opacity", 1); }
+// All the cursors go back to their previous definitions.
     $(document.body).css("cursor", "default");
     $("area").css("cursor", "pointer");
     $("#ch1-button, #ch2-button").css("cursor", "pointer");
@@ -285,10 +181,60 @@ function turnOffOffcanvas(signalGenerator) {
     offCanvas = 0;
 }
 function checkAndAlertOscilloscopeStatus() {
-    if (powerFlag === 0) {
-      alert("Turn on the oscilloscope first!");
-    }
+    if(powerFlag == 0){ alert("Turn on the oscilloscope first!"); }
 }
+function initialization(){
+    updateScales();
+    updateCH1Menu();
+    if(CH1Display == 1){ $("#ch1-button").css("opacity", 1); }
+    if(CH2Display == 1){ $("#ch2-button").css("opacity", 1); }
+    if(CH1inputFlag == 1){ $("#CH1Input").css("opacity", 1); }
+    if(CH2inputFlag == 1){ $("#CH2Input").css("opacity", 1); }
+    if(CH1SignalGenerator == 1 || CH2SignalGenerator == 1){ $("#signalGeneratorOffcanvas").css("opacity", 1); }
+    if(trigger.type == 0){ $("#trigger-type").text("EDGE"); }
+    if(trigger.source == 0){ $("#trigger-source").text("CH1").css("color", "#fbff00"); }
+    else if(trigger.source == 1){ $("#trigger-source").text("CH2").css("color", "#00eaff"); }
+}
+function initialization2(){
+    CH1MenuFlag = 1;
+    updateCH1Menu();
+    acquisitionFunctionalities();
+    if(trigger.type == 0){ $("#trigger-type").text("EDGE"); }
+    if(trigger.source == 0){ $("#trigger-source").text("CH1").css("color", "#fbff00"); }
+    else if(trigger.source == 1){ $("#trigger-source").text("CH2").css("color", "#00eaff"); }
+    intervalRefData = setInterval(askData, 1000); // TODO - Definir o intervalo de tempo para pedir os dados
+    intervalRefWaves = setInterval(waves, 1000);
+}
+function power(){
+    if(powerFlag == 0){
+        $("#power-light").css("opacity", 1);
+        if(mode == "simulation"){ initialization(); }
+        if(mode == "acquisition"){ initialization2(); }
+        powerFlag = 1;
+    }
+    else {
+        clearScreen();
+        $("#power-light, #ch1-button, #ch2-button, #CH1Input, #CH2Input, #signalGeneratorOffcanvas").css("opacity", 0);
+        powerFlag = 0;
+        clearInterval(intervalRefData);
+        clearInterval(intervalRefWaves);
+    }
+    toggleInterface();
+}
+function clearScreen(){ //* Clear the lateral menu and resets the positions/font-sizes so new values can be introduced
+    $("#menu-title").text("").css({ "font-size": "19px", "top": "-5px"});
+    $("#menu-textTitle1, #menu-textTitle2, #menu-textTitle3, #menu-textTitle4, #menu-textTitle5").css({ "font-size": "19px" }).text("");
+    $("#menu-text1, #menu-text2, #menu-text3, #menu-text4, #menu-text5").css({ "font-size": "19px" }).text("");
+    $("#menu-soloText1, #menu-soloText2, #menu-soloText3, #menu-soloText4, #menu-soloText5").css({ "font-size": "19px" , "margin-top": "0px"}).text("");
+    $("#menu-valueText11, #menu-valueText12, #menu-valueText21, #menu-valueText22, #menu-valueText31, #menu-valueText32, #menu-valueText41, #menu-valueText42, #menu-valueText43, #menu-valueText44, #menu-valueText51, #menu-valueText52, #menu-valueText53").text("");
+}
+function simulatorFunctionalities(){
+    // Disable Cursors of unused buttons
+    $("#acquire, #display, #utility, #program, #saveRecall, #autoTestStop, #help, #cursor, #rampPulseCH1, #rampPulseCH2, #runStop, #variable, #menuOnOff").css("cursor", "not-allowed");
+}
+
+
+// TODO - Substituir a variável: verticalScaleValueCH1 por uma classe.
 function updateScales() {
     let verticalScaleCH1_Value = verticalScaleList[verticalScaleValueCH1];
     $("#ch1-voltageScale").text(scientificNotationToReal(verticalScaleCH1_Value) + "V");
@@ -297,6 +243,8 @@ function updateScales() {
     let horizontalScale_Value = horizontalScaleList[horizontalScaleValue];
     $("#time-horizontalScale").text(scientificNotationToReal(horizontalScale_Value) + "s");
 }
+
+// TODO - Substituir todas as flags por uma const flag com todas as flags lá dentro
 function resetMenuFlags() {
     CH1MenuFlag = 0;
     CH2MenuFlag = 0;
@@ -306,6 +254,9 @@ function resetMenuFlags() {
     acquireMenuFlag = 0;
     horizontalMenuFlag = 0;
 }
+
+//* Functions that update the lateral menu
+// TODO - Modificar as variáveis pelas classes.
 function updateCH1Menu(){
     clearScreen(); 
     $("#menu-title").text("CH1");
@@ -362,45 +313,9 @@ function updateCH2Menu(){
     else if(probeValueCH2 == 1){ $("#menu-text3").text("x10"); }
     else if(probeValueCH2 == 2){ $("#menu-text3").text("x100"); }
 }
-function initialization(){
-    updateScales();
-    updateCH1Menu();
-    if(CH1Display == 1){ $("#ch1-button").css("opacity", 1); }
-    if(CH2Display == 1){ $("#ch2-button").css("opacity", 1); }
-    if(CH1inputFlag == 1){ $("#CH1Input").css("opacity", 1); }
-    if(CH2inputFlag == 1){ $("#CH2Input").css("opacity", 1); }
-    if(CH1SignalGenerator == 1 || CH2SignalGenerator == 1){ $("#signalGeneratorOffcanvas").css("opacity", 1); }
-    if(trigger.type == 0){ $("#trigger-type").text("EDGE"); }
-    if(trigger.source == 0){ $("#trigger-source").text("CH1").css("color", "#fbff00"); }
-    else if(trigger.source == 1){ $("#trigger-source").text("CH2").css("color", "#00eaff"); }
-}
-function initialization2(){
-    CH1MenuFlag = 1;
-    updateCH1Menu();
-    acquisitionFunctionalities();
-    if(trigger.type == 0){ $("#trigger-type").text("EDGE"); }
-    if(trigger.source == 0){ $("#trigger-source").text("CH1").css("color", "#fbff00"); }
-    else if(trigger.source == 1){ $("#trigger-source").text("CH2").css("color", "#00eaff"); }
-    intervalRefData = setInterval(askData, 1000); // TODO - Definir o intervalo de tempo para pedir os dados
-    intervalRefWaves = setInterval(waves, 1000);
-}
-function power(){
-    if(powerFlag == 0){
-        $("#power-light").css("opacity", 1);
-        if(mode == "simulation"){ initialization(); }
-        if(mode == "acquisition"){ initialization2(); }
-        powerFlag = 1;
-    }
-    else {
-        clearScreen();
-        $("#power-light, #ch1-button, #ch2-button, #CH1Input, #CH2Input, #signalGeneratorOffcanvas").css("opacity", 0);
-        powerFlag = 0;
-        clearInterval(intervalRefData);
-        clearInterval(intervalRefWaves);
-    }
-    toggleInterface();
-}
-function resetMode (){ // TODO - Continuar a desenvolver na faculdade
+//TODO - Atualizar o initialization para setup e mudar para setupSimulation e setupAcquisition
+// TODO - Finalizar a função que reinicia as variáveis ao mudar de modo.
+function resetMode (){
     CH1BaseData = [];
     CH2BaseData = [];
     CH1Data = [];
@@ -422,8 +337,9 @@ function resetMode (){ // TODO - Continuar a desenvolver na faculdade
     horizontalScale_Value = 0;
     horizontalPositionValue = 0;
 }
-function scientificNotationToReal(value){
-    let valueunit = value.substring(value.length - 2, value.length);
+function scientificNotationToReal(value){ //* Transforms a number on scientific notation to a number with the submultiple/multiple (to display)
+    let valueunit = value.substring(value.length - 2, value.length); // Grabs the exponent of the number
+    //* Determines the submultiple/multiple
     if(valueunit == "-9" || valueunit == "-8" || valueunit == "-7"){
         format = "n";
     }else if(valueunit == "-6" || valueunit == "-5" || valueunit == "-4"){
@@ -437,6 +353,7 @@ function scientificNotationToReal(value){
     }else if(valueunit == "+6" || valueunit == "+7" || valueunit == "+8"){
         format = "M";
     }
+    //* Put the number in accordance with the submultiple/multiple
     if(valueunit == "-9" || valueunit == "-6" || valueunit == "-3" || valueunit == "+0" || valueunit == "+3" || valueunit == "+6"){
         multi = 1;
     }else if(valueunit == "-8" || valueunit == "-5" || valueunit == "-2" || valueunit == "+1" || valueunit == "+4" || valueunit == "+7"){
@@ -444,260 +361,50 @@ function scientificNotationToReal(value){
     }else if(valueunit == "-7" || valueunit == "-4" || valueunit == "-1" || valueunit == "+2" || valueunit == "+5" || valueunit == "+8"){
         multi = 100;
     }
-    value = value.substring(0, value.length - 4);
-    value = value * multi;
-    if (value % 1 !== 0) {
-        value = value.toFixed(2);
-    }
-    string = value + format;
+    //* Puts everything together and creates the number
+    value = value.substring(0, value.length - 4); // Grabs the base of the number
+    value = value * multi; // Multiplies the number to be in accordance with submultiple/multiple
+    if(value % 1 !== 0){ value = value.toFixed(2); }
+    string = value + ' ' +format; // The number tranforms into a string because of the multiple/submultiple.
     return string;
 }
-function clearScreen(){//Clear interface
-    $("#menu-title").text("").css({ "font-size": "19px", "top": "-5px"});
-    $("#menu-textTitle1, #menu-textTitle2, #menu-textTitle3, #menu-textTitle4, #menu-textTitle5").css({ "font-size": "19px" }).text("");
-    $("#menu-text1, #menu-text2, #menu-text3, #menu-text4, #menu-text5").css({ "font-size": "19px" }).text("");
-    $("#menu-soloText1, #menu-soloText2, #menu-soloText3, #menu-soloText4, #menu-soloText5").css({ "font-size": "19px" , "margin-top": "0px"}).text("");
-    $("#menu-valueText11, #menu-valueText12, #menu-valueText21, #menu-valueText22, #menu-valueText31, #menu-valueText32, #menu-valueText41, #menu-valueText42, #menu-valueText43, #menu-valueText44, #menu-valueText51, #menu-valueText52, #menu-valueText53").text("");
-}
-function showGraph1(data) {
-    if(mathDataFlag == 1){ showGraph3(mathData); }
-    svg1 = d3.select('#myChart1');
-
-    const width = 368;
-    const height = 295;
-
-    const horizontalScale = horizontalScaleList[horizontalScaleValue]*10
-    const verticalScale = verticalScaleList[verticalScaleValueCH1]*4
-    svg1.attr('width', width).attr('height', height);
-
-    svg1.selectAll('*').remove();
-
-    const xScale = d3.scaleLinear()
-                     .domain([0, horizontalScale])
-                     .range([0, width]);
-    const yScale = d3.scaleLinear()
-                     .domain([-verticalScale, verticalScale])
-                     .range([height, 0]);
-    const line = d3.line()
-                    .x((d, i) => xScale(parseFloat(d.Time) + horizontalScale * (horizontalPositionValue + 0.5)  + timeTraveledCH1 + horizontalScale * distanceTraveledCH1))
-                    .y(d => yScale((d.Amplitude+ verticalScale*verticalPositionValueCH1) / (10 ** probeValueCH1)));
-
-    let j = 0;
-    let time;
-    data.forEach(d => {
-        j++;
-        if(j == data.length){
-            time = parseFloat(d.Time);
-        }
-    });
-    const interval = time;
-    for (let i = -numPeriods; i < numPeriods; i++) {
-        const translatedData = data.map(d => ({ Time: parseFloat(d.Time) + i * interval, Amplitude: d.Amplitude }));
-        svg1.append('path')
-            .datum(translatedData)
-            .attr('fill', 'none')
-            .attr('stroke', 'rgb(255, 255, 40)')
-            .attr('stroke-width', 2)
-            .attr('d', line);
-    }
-}
-function showGraph1Real(data) {
-    if(mathDataFlag == 1){showGraph3(mathData);}
-    svg1 = d3.select('#myChart1');
-
-    const width = 368;
-    const height = 295;
-
-    const horizontalScale = horizontalScaleList[horizontalScaleValue]*10
-    const verticalScale = verticalScaleList[verticalScaleValueCH1]*4
-    svg1.attr('width', width).attr('height', height);
-
-    svg1.selectAll('*').remove();
-    
-    const xScale = d3.scaleLinear()
-                     .domain([0, horizontalScale])
-                     .range([0, width]);
-    const yScale = d3.scaleLinear()
-                     .domain([-verticalScale, verticalScale])
-                     .range([height, 0]);
-    const line = d3.line()
-                    .x((d, i) => xScale(parseFloat(d.Time)))
-                    .y(d => yScale((d.Amplitude+ verticalScale*verticalPositionValueCH1) / (10 ** probeValueCH1)));
-
-    let j = 0;
-    let time;
-    data.forEach(d => {
-        j++;
-        if(j == data.length){
-            time = parseFloat(d.Time);
-        }
-    });
-    const interval = time;
-    for (let i = -numPeriods; i < numPeriods; i++) {
-        const translatedData = data.map(d => ({ Time: parseFloat(d.Time) + i * interval, Amplitude: d.Amplitude }));
-        svg1.append('path')
-            .datum(translatedData)
-            .attr('fill', 'none')
-            .attr('stroke', 'rgb(255, 255, 40)')
-            .attr('stroke-width', 2)
-            .attr('d', line);
-    }
-}
-function showGraph2(data) {
-    if(mathDataFlag == 1){showGraph3(mathData);}
-    svg2 = d3.select('#myChart2');
-
-    const width = 368;
-    const height = 295;
-
-    const horizontalScale = horizontalScaleList[horizontalScaleValue]*10
-    const verticalScale = verticalScaleList[verticalScaleValueCH2]*4
-    svg2.attr('width', width).attr('height', height);
-
-    svg2.selectAll('*').remove();
-
-    const xScale = d3.scaleLinear()
-                    .domain([0, horizontalScale])
-                    .range([0, width]);
-    const yScale = d3.scaleLinear()
-                    .domain([-verticalScale, verticalScale])
-                    .range([height, 0]);
-    const line = d3.line()
-                    .x((d, i) => xScale(parseFloat(d.Time) + horizontalScale * (horizontalPositionValue + 0.5)  + timeTraveledCH2  + horizontalScale * distanceTraveledCH2))
-                    .y(d => yScale((d.Amplitude + verticalScale*verticalPositionValueCH2) / (10**probeValueCH2)));
-
-    let j = 0;
-    let time;
-    data.forEach(d => {
-        j++;
-        if(j == data.length){
-            time = parseFloat(d.Time);
-        }
-    });
-    const interval = time;
-    for (let i = -numPeriods; i < numPeriods; i++) {
-        const translatedData = data.map(d => ({ Time: parseFloat(d.Time) + i * interval, Amplitude: d.Amplitude }));
-        svg2.append('path')
-            .datum(translatedData)
-            .attr('fill', 'none')
-            .attr('stroke', 'rgb(0, 242, 255)')
-            .attr('stroke-width', 2)
-            .attr('d', line);
-    }
-}
-function showGraph2Real(data) {
-    if(mathDataFlag == 1){showGraph3(mathData);}
-    svg2 = d3.select('#myChart2');
-
-    const width = 368;
-    const height = 295;
-
-    const horizontalScale = horizontalScaleList[horizontalScaleValue]*10
-    const verticalScale = verticalScaleList[verticalScaleValueCH2]*4
-    svg2.attr('width', width).attr('height', height);
-
-    svg2.selectAll('*').remove();
-
-    const xScale = d3.scaleLinear()
-                    .domain([0, horizontalScale])
-                    .range([0, width]);
-    const yScale = d3.scaleLinear()
-                    .domain([-verticalScale, verticalScale])
-                    .range([height, 0]);
-    const line = d3.line()
-                    .x((d, i) => xScale(parseFloat(d.Time)))
-                    .y(d => yScale((d.Amplitude + verticalScale*verticalPositionValueCH2) / (10**probeValueCH2)));
-
-    let j = 0;
-    let time;
-    data.forEach(d => {
-        j++;
-        if(j == data.length){
-            time = parseFloat(d.Time);
-        }
-    });
-    const interval = time;
-    for (let i = -numPeriods; i < numPeriods; i++) {
-        const translatedData = data.map(d => ({ Time: parseFloat(d.Time) + i * interval, Amplitude: d.Amplitude }));
-        svg2.append('path')
-            .datum(translatedData)
-            .attr('fill', 'none')
-            .attr('stroke', 'rgb(0, 242, 255)')
-            .attr('stroke-width', 2)
-            .attr('d', line);
-    }
-}
-function showGraph3(data) {
-    svg3 = d3.select('#myChart3');
-
-    const width = 368;
-    const height = 295;
-
-    const horizontalScale = horizontalScaleList[horizontalScaleValue]*10;
-    let verticalScale;
-    if(verticalScaleValueCH1 >= verticalScaleValueCH2){ verticalScale = verticalScaleList[verticalScaleValueCH1]*4; }
-    else{ verticalScale = verticalScaleList[verticalScaleValueCH2]*4; }
-    svg3.attr('width', width).attr('height', height);
-
-    svg3.selectAll('*').remove();
-
-    const xScale = d3.scaleLinear()
-                    .domain([0, horizontalScale])
-                    .range([0, width]);
-    const yScale = d3.scaleLinear()
-                    .domain([-verticalScale, verticalScale])
-                    .range([height, 0]);
-    const line = d3.line()
-                    .x((d, i) => xScale(d.Time + horizontalScale * (horizontalPositionValue + 0.5)))
-                    .y(d => yScale(d.Amplitude));
-
-    let j = 0;
-    let time;
-    data.forEach(d => {
-        j++;
-        if(j == data.length){
-            time = parseFloat(d.Time);
-        }
-    });
-    const interval = time;
-    for (let i = -numPeriods; i < numPeriods; i++) {
-        const translatedData = data.map(d => ({ Time: parseFloat(d.Time) + i * interval, Amplitude: d.Amplitude }));
-        svg3.append('path')
-            .datum(translatedData)
-            .attr('fill', 'none')
-            .attr('stroke', 'rgb(255, 0, 0)')
-            .attr('stroke-width', 2)
-            .attr('d', line);
-    }
-}
-function verticalScaleCH1(){
-    if(verticalScaleValueCH1 < 0){ verticalScaleValueCH1 = 0; }
-    if(verticalScaleValueCH1 > 10){ verticalScaleValueCH1 = 10; }
-    verticalScaleCH1_Value = verticalScaleList[verticalScaleValueCH1];
-    verticalScaleCH1_Value = (verticalScaleCH1_Value * 10 ** probeValueCH1).toExponential(2);
-    if(mode == "simulation"){
+// TODO - Simplificar/comentar as funções de showGraph
+// TODO - Perceber como criar os manípulos 
+function verticalScaleCH1(){ //* Updates the vertical scale
+    if(verticalScaleValueCH1 < 0){ verticalScaleValueCH1 = 0; } // Number between the range
+    if(verticalScaleValueCH1 > 10){ verticalScaleValueCH1 = 10; } // Number between the range
+    verticalScaleCH1_Value = verticalScaleList[verticalScaleValueCH1]; // Grabs the number from the list
+    verticalScaleCH1_Value = (verticalScaleCH1_Value * 10 ** probeValueCH1).toExponential(2); // Transforms it into an exponential number
+    if(mode == "simulation"){ //* Displays the number and updates the the screen
         let string = scientificNotationToReal(verticalScaleCH1_Value);
         $("#ch1-voltageScale").text(string + "V");
-        if(CH1inputFlag == 0){ showGraph1(dcSignal); }
-        else if(horizontalSweep == 0){ showGraph1(CH1Data); }
+        if(CH1inputFlag == 0){ 
+            updateChart1();
+         }
+        else if(horizontalSweep == 0){ 
+            //showGraph1(CH1Data);
+            updateChart1();
+        }
         else if(horizontalSweep == 4){ showGraphXY(XYData); }
     }
-    else if(mode == "acquisition"){ sendPostRequest("/CH1/scale", verticalScaleCH1_Value); }
+    else if(mode == "acquisition"){ sendPostRequest("/CH1/scale", verticalScaleCH1_Value); } //* Send request to change the scale
+    //TODO - Modificar a forma como a forma de onda math funciona (scale ajusta-se com o variable)
     if(mathMenuFlag == 1){ updateMenuMath(); }
 }
 function verticalScaleCH2(){
-    if(verticalScaleValueCH2 < 0){ verticalScaleValueCH2 = 0; }
-    if(verticalScaleValueCH2 > 10){ verticalScaleValueCH2 = 10; }
-    verticalScaleCH2_Value = verticalScaleList[verticalScaleValueCH2];
-    verticalScaleCH2_Value = (verticalScaleCH2_Value * 10 ** probeValueCH2).toExponential(2);
-    if(mode == "simulation"){
+    if(verticalScaleValueCH2 < 0){ verticalScaleValueCH2 = 0; } // Number between the range
+    if(verticalScaleValueCH2 > 10){ verticalScaleValueCH2 = 10; } // Number between the range
+    verticalScaleCH2_Value = verticalScaleList[verticalScaleValueCH2]; // Grabs the number from the list
+    verticalScaleCH2_Value = (verticalScaleCH2_Value * 10 ** probeValueCH2).toExponential(2); // Transforms it into an exponential number
+    if(mode == "simulation"){ //* Displays the number and updates the the screen
         let string = scientificNotationToReal(verticalScaleCH2_Value);
         $("#ch2-voltageScale").text(string + "V");
         if(CH2inputFlag == 0){ showGraph2(dcSignal); }
         else if(horizontalSweep == 0){ showGraph2(CH2Data); }
         else if(horizontalSweep == 4){ showGraphXY(XYData); }
     }
-    else if(mode == "acquisition"){ sendPostRequest("/CH2/scale", verticalScaleCH2_Value); }
+    else if(mode == "acquisition"){ sendPostRequest("/CH2/scale", verticalScaleCH2_Value); } //* Send request to change the scale
+    //TODO - Modificar a forma como a forma de onda math funciona (scale ajusta-se com o variable)
     if(mathMenuFlag == 1){ updateMenuMath(); }
 }
 function horizontalScale(){
@@ -707,10 +414,12 @@ function horizontalScale(){
     if(mode == "simulation"){
         let string = scientificNotationToReal(horizontalScale_Value);
         $("#time-horizontalScale").text(string + "s");
-        showGraph1(CH1Data);
-        if(CH1inputFlag == 0){ showGraph1(dcSignal); }
-        showGraph2(CH2Data);
-        if(CH2inputFlag == 0){ showGraph2(dcSignal); }
+        updateChart1();
+        updateChart2();
+        // showGraph1(CH1Data);
+        // if(CH1inputFlag == 0){ showGraph1(dcSignal); }
+        // showGraph2(CH2Data);
+        // if(CH2inputFlag == 0){ showGraph2(dcSignal); }
     }
     else if(mode == "acquisition"){ sendPostRequest("/timebase/scale", horizontalScale_Value); }
 }
@@ -719,16 +428,28 @@ function verticalPositionCH1(){ // Updates the vertical position of CH1
         // Limits the vertical position to the screen
         if(verticalPositionValueCH1 < -1){ verticalPositionValueCH1 = -1; }
         if(verticalPositionValueCH1 > 1){ verticalPositionValueCH1 = 1; }
-        
+        if(trigger.position < -1){ trigger.position = -1; }
+        if(trigger.position > 1){ trigger.position = 1; }
+
+        if(trigger.position + trigger.level > 1 || trigger.position + trigger.level < -1){ $("#cursor-trigger").css("display", "none"); }
+        else{ $("#cursor-trigger").css("display", "block"); }
         // Updates the graph with the new vertical position
-        if(CH1inputFlag == 0){ showGraph1(dcSignal); }
-        else if(CH1inputFlag == 1){ showGraph1(CH1Data); }
+        if(CH1inputFlag == 0){
+            console.log("triggerposition = " + trigger.position + "verticalPositionValueCH1 = " + verticalPositionValueCH1)
+            updateChart1();
+            //showGraph1(dcSignal);
+        }
+        else if(CH1inputFlag == 1){
+            updateChart1();
+            //showGraph1(CH1Data);
+        }
 
         // Display an alert message with the new position in volts
         let position = (verticalPositionValueCH1 * verticalScaleList[verticalScaleValueCH1] * 4);
         if(position > 0 && position < 10**-6 || position < 0 && position > -(10**-6)){ position = 0; }
         position = scientificNotationToReal(position.toExponential(3));
         $("#cursorCH1").css("top", -verticalPositionValueCH1*147.5+137); // Moves the cursor to the new position
+        $("#cursor-trigger").css("top", -(trigger.level + trigger.position)*147.5+137); // Moves the cursor to the new position
         $("#alertMessage").css("display", "block");
         $("#alertMessage").text("Position(1)=" + position + "V");
         if (timeoutId) { clearTimeout(timeoutId); } // Clears the previous timeout
@@ -766,8 +487,10 @@ function horizontalPosition(){
         if(horizontalPositionValue < -0.5){ horizontalPositionValue = -0.5; }
         if(horizontalPositionValue > 0.5){ horizontalPositionValue = 0.5; }
         $("#cursor-time").css("left", horizontalPositionValue*366+174);
-        showGraph1(CH1Data);
-        showGraph2(CH2Data);
+        updateChart1();
+        updateChart2();
+        // showGraph1(CH1Data);
+        // showGraph2(CH2Data);
     }
 }
 function menuCH1(){
@@ -779,7 +502,10 @@ function menuCH1(){
             if(timeoutId && CH1inputFlag == 1) {
                 $("#alertMessage").css("display", "none");
             }
-            if(CH1input == 0){ showGraph1(dcSignal); }
+            if(CH1input == 0){
+                //updateChart1();
+                showGraph1(dcSignal); 
+            }
             $("#myChart1").css("opacity", 1);
         }
         else if(mode == "acquisition") { sendPostRequest("/CH1/display", "1"); }
@@ -896,6 +622,7 @@ function autoSet(){
                     couplingValueCH1 = 0;
                     verticalScaleCH1();
                     verticalPositionValueCH1 = 0.5;
+                    trigger.position = 0.5;
                     verticalPositionCH1();
                     break;
                 }
@@ -919,6 +646,8 @@ function autoSet(){
                 }
             }
         }
+        if(CH1MenuFlag == 1){ updateCH1Menu(); }
+        else if(CH2MenuFlag == 1){ updateCH2Menu(); }
     }
     else if(mode == "acquisition"){
         sendPostRequest("/autoset");
@@ -1023,6 +752,14 @@ function measureCalculationCH1(){
     vampCH1 = (vMaxCH1 - vAvgCH1).toFixed(2);
     vMaxCH1 = vMaxCH1.toFixed(2);
     vMinCH1 = vMinCH1.toFixed(2);
+
+    console.log("vAvgCH1 (antes entrar)= " + vAvgCH1);
+
+    if(CH1ExtFlag == 0){
+        CH1ExtFlag = 1;
+        CH1ExtVavg = vAvgCH1;
+        updateChart1();
+    }
 }
 function measureCalculationCH2(){
     vMaxCH2 = 0;
@@ -1063,13 +800,21 @@ function measureCalculationCH2(){
     vampCH2 = (vMaxCH2 - vAvgCH2).toFixed(2);
     vMaxCH2 = vMaxCH2.toFixed(2);
     vMinCH2 = vMinCH2.toFixed(2);
+
+    if(CH2ExtFlag == 0){
+        CH2ExtFlag = 1;
+        CH2ExtVavg = vAvgCH2;
+        updateChart2();
+    }
 }
 function measureMenu1(){
     //TODO - Escrever a frequencia e voltagens com mV ou kHz etc
     //TODO - Modificar o menu para se parecer com o do osciloscópio
     clearScreen();
-    CH1MenuFlag = 0;
-    CH2MenuFlag = 0;
+    resetMenuFlags();
+    measureFlag = 1;
+    // CH1MenuFlag = 0;
+    // CH2MenuFlag = 0;
     $("#menu-title").text("MEASURE");
     $("#menu-textTitle1").text("Source");
     if(sourceValue == 0){ $("#menu-text1").text("CH1"); }
@@ -1093,20 +838,20 @@ function measureMenu1(){
         $("#menu-soloText5").text("---");
     }
     else if(CH1Data != 0 && sourceValue == 0){
-        if(voltTypeValue == 0){ $("#menu-soloText4").text(vppCH1 + "V");}
-        else if(voltTypeValue == 1){ $("#menu-soloText4").text(vMaxCH1 + "V");}
-        else if(voltTypeValue == 2){ $("#menu-soloText4").text(vMinCH1 + "V");}
-        else if(voltTypeValue == 3){ $("#menu-soloText4").text(vRmsCH1 + "V");} 
-        else if(voltTypeValue == 4){ $("#menu-soloText4").text(vAvgCH1 + "V");}
+        if(voltTypeValue == 0){ $("#menu-soloText4").text(vppCH1 + " V");}
+        else if(voltTypeValue == 1){ $("#menu-soloText4").text(vMaxCH1 + " V");}
+        else if(voltTypeValue == 2){ $("#menu-soloText4").text(vMinCH1 + " V");}
+        else if(voltTypeValue == 3){ $("#menu-soloText4").text(vRmsCH1 + " V");} 
+        else if(voltTypeValue == 4){ $("#menu-soloText4").text(vAvgCH1 + " V");}
         if(timeTypeValue == 0){ $("#menu-soloText5").text(frequencyCH1 + "Hz");}
         else if(timeTypeValue == 1){ $("#menu-soloText5").text(periodCH1 + "s");}
     }
     else if(CH2Data != 0 && sourceValue == 1){
-        if(voltTypeValue == 0){ $("#menu-soloText4").text(vppCH2 + "V");}
-        else if(voltTypeValue == 1) { $("#menu-soloText4").text(vMaxCH2 + "V");}
-        else if(voltTypeValue == 2) { $("#menu-soloText4").text(vMinCH2 + "V");}
-        else if(voltTypeValue == 3) { $("#menu-soloText4").text(vRmsCH2 + "V");}
-        else if(voltTypeValue == 4) { $("#menu-soloText4").text(vAvgCH2 + "V");}
+        if(voltTypeValue == 0){ $("#menu-soloText4").text(vppCH2 + " V");}
+        else if(voltTypeValue == 1) { $("#menu-soloText4").text(vMaxCH2 + " V");}
+        else if(voltTypeValue == 2) { $("#menu-soloText4").text(vMinCH2 + " V");}
+        else if(voltTypeValue == 3) { $("#menu-soloText4").text(vRmsCH2 + " V");}
+        else if(voltTypeValue == 4) { $("#menu-soloText4").text(vAvgCH2 + " V");}
         if(timeTypeValue == 0){ $("#menu-soloText5").text(frequencyCH2 + "Hz");}
         else if(timeTypeValue == 1){ $("#menu-soloText5").text(periodCH2 + "s");}
     }
@@ -1123,12 +868,12 @@ function measureMenu2(){
 }
 function measureAllCH1(){
     if(CH1inputFlag == 1){
-        $("#CH1vpp").text("Vpp: " + vppCH1 + "V");
-        $("#CH1vamp").text("Vamp: " + (vppCH1/2) + "V");
-        $("#CH1vmax").text("Vmax: " + vMaxCH1 + "V");
-        $("#CH1vmin").text("Vmin: " + vMinCH1 + "V");
-        $("#CH1vrms").text("Vrms: " + vRmsCH1 + "V");
-        $("#CH1vavg").text("Vavg: " + vAvgCH1 + "V");
+        $("#CH1vpp").text("Vpp: " + vppCH1 + " V");
+        $("#CH1vamp").text("Vamp: " + (vppCH1/2) + " V");
+        $("#CH1vmax").text("Vmax: " + vMaxCH1 + " V");
+        $("#CH1vmin").text("Vmin: " + vMinCH1 + " V");
+        $("#CH1vrms").text("Vrms: " + vRmsCH1 + " V");
+        $("#CH1vavg").text("Vavg: " + vAvgCH1 + " V");
         $("#CH1freq").text("Frequency: " + frequencyCH1 + "Hz");
         $("#CH1period").text("Period: " + periodCH1 + "s");
     }
@@ -1145,12 +890,12 @@ function measureAllCH1(){
 }
 function measureAllCH2(){
     if(CH2inputFlag == 1){
-        $("#CH2vpp").text("Vpp: " + vppCH2 + "V");
-        $("#CH2vamp").text("Vamp: " + (vppCH2/2) + "V");
-        $("#CH2vmax").text("Vmax: " + vMaxCH2 + "V");
-        $("#CH2vmin").text("Vmin: " + vMinCH2 + "V");
-        $("#CH2vrms").text("Vrms: " + vRmsCH2 + "V");
-        $("#CH2vavg").text("Vavg: " + vAvgCH2 + "V");
+        $("#CH2vpp").text("Vpp: " + vppCH2 + " V");
+        $("#CH2vamp").text("Vamp: " + (vppCH2/2) + " V");
+        $("#CH2vmax").text("Vmax: " + vMaxCH2 + " V");
+        $("#CH2vmin").text("Vmin: " + vMinCH2 + " V");
+        $("#CH2vrms").text("Vrms: " + vRmsCH2 + " V");
+        $("#CH2vavg").text("Vavg: " + vAvgCH2 + " V");
         $("#CH2freq").text("Frequency: " + frequencyCH2 + "Hz");
         $("#CH2period").text("Period: " + periodCH2 + "s");
     }
@@ -1214,8 +959,8 @@ function runStop(){
     }
     else if(runStopValue == 1){
         if(mode == "simulation" ){
-            if(CH1RealSignal == 1){ intervalRefCH1 = setInterval(waveform1, 1000); }
-            if(CH2RealSignal == 1){ intervalRefCH2 = setInterval(waveform2, 1000); }
+            if(CH1RealSignal == 1){ intervalRefCH1 = setInterval(waveformCH1, 1000); }
+            if(CH2RealSignal == 1){ intervalRefCH2 = setInterval(waveformCH2, 1000); }
         }
         else if(mode == "acquisition"){ sendPostRequest("/run"); }
         $("#stop").css("display", "none");
@@ -1327,10 +1072,12 @@ function updateTriggerSlopeMenu(){
     $("#menu-textTitle1").text("Slope");
     if(trigger.slope == 0){ 
         $("#menu-text1").text("Rising");
+        $("#trigger-slope").css("transform", "scaleX(1)");
         // TODO - Adicionar Slope Image
     }
     else if(trigger.slope == 1){ 
         $("#menu-text1").text("Falling");
+        $("#trigger-slope").css("transform", "scaleX(-1)");
     }
 //? - Position 2 -
     $("#menu-textTitle2").text("Coupling");

@@ -8,8 +8,8 @@ const oscilloscope = new Oscilloscope();
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
 
-const port = new SerialPort({ path: 'COM3', baudRate: 9600 });
-const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
+// const port = new SerialPort({ path: 'COM3', baudRate: 9600 });
+// const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
 
 var verticalScaleCH1 = null;
 var verticalScaleCH2 = null;
@@ -50,145 +50,148 @@ var triggerSource = null;
 
 // TODO - Acrescentar os comandos que faltam.
 
-    parser.on('data', function(data) {
+    // parser.on('data', function(data) {
 
-        const scaleValue = /SCALe\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
-        // ------------- Added ------------
-        const systemTimeValue = /SYSTem:TIMe\s(\d{2}\s\d{2}\s\d{2})/g;
-        const dateValue = /DATe\s(\d{2}\/\d{2}\/\d{4})/g;
-        const typeValue = /TYPe\s([\d\.])/g;
-        const coupleValue = /COUple\s([\d\.])/g;
-        const levelValue = /TYPe\s([\d\.])/g;
-        const modeValue = /MODE\s([\d\.])/g;
-        const nrejValue = /NREJ\s([\d\.])/g;
-        const rejectValue = /REJect\s([\d\.])/g;
-        const slopValue = /SLOP\s([\d\.])/g;
-        const sourceValue = /SOURce\s([\d\.])/g;
-        const delayValue = /DELay\s([\d\.])/g;
-        const eventValue = /EVENt\s([\d\.])/g;
-        const fieldValue = /FIELd\s([\d\.])/g;
-        const lineValue = /LINe\s([\d\.])/g;
-        const polarityValue = /POLarity\s([\d\.])/g;
-        const averageValue = /AVERage\s([\d\.])/g;
-        const lengthValue = /LENGth\s([\d\.])/g;
-        const waveformValue = /WAVeform\s([\d\.])/g;
-        const dispcontrastValue = /DISPCONtrast\s([\d\.])/g;
-        const graticuleValue = /GRATicule\s([\d\.])/g;
-        //? ---- CH1 & CH2 ----
-        const displayValue = /DISPlay\s([\d\.])/g;
-        const bandwidthValue = /BWLimit\s([\d\.])/g;
-        const couplingValue = /COUPling\s([\d\.])/g;
-        const invertValue = /INVert\s([\d\.])/g;
-        const probeValue = /PROBe\s([\d\.])/g;
+    //     const scaleValue = /SCALe\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
+    //     // ------------- Added ------------
+    //     const systemTimeValue = /SYSTem:TIMe\s(\d{2}\s\d{2}\s\d{2})/g;
+    //     const dateValue = /DATe\s(\d{2}\/\d{2}\/\d{4})/g;
+    //     const typeValue = /TYPe\s([\d\.])/g;
+    //     const coupleValue = /COUple\s([\d\.])/g;
+    //     const levelValue = /TYPe\s([\d\.])/g;
+    //     const modeValue = /MODE\s([\d\.])/g;
+    //     const nrejValue = /NREJ\s([\d\.])/g;
+    //     const rejectValue = /REJect\s([\d\.])/g;
+    //     const slopValue = /SLOP\s([\d\.])/g;
+    //     const sourceValue = /SOURce\s([\d\.])/g;
+    //     const delayValue = /DELay\s([\d\.])/g;
+    //     const eventValue = /EVENt\s([\d\.])/g;
+    //     const fieldValue = /FIELd\s([\d\.])/g;
+    //     const lineValue = /LINe\s([\d\.])/g;
+    //     const polarityValue = /POLarity\s([\d\.])/g;
+    //     const averageValue = /AVERage\s([\d\.])/g;
+    //     const lengthValue = /LENGth\s([\d\.])/g;
+    //     const waveformValue = /WAVeform\s([\d\.])/g;
+    //     const dispcontrastValue = /DISPCONtrast\s([\d\.])/g;
+    //     const graticuleValue = /GRATicule\s([\d\.])/g;
+    //     //? ---- CH1 & CH2 ----
+    //     const displayValue = /DISPlay\s([\d\.])/g;
+    //     const bandwidthValue = /BWLimit\s([\d\.])/g;
+    //     const couplingValue = /COUPling\s([\d\.])/g;
+    //     const invertValue = /INVert\s([\d\.])/g;
+    //     const probeValue = /PROBe\s([\d\.])/g;
 
-        const vppValue = /VPP\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
-        const vrmsValue = /VRMS\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
-        const periodValue = /PERiod\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
-        const frequencyValue = /FREQuency\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
+    //     const vppValue = /VPP\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
+    //     const vrmsValue = /VRMS\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
+    //     const periodValue = /PERiod\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
+    //     const frequencyValue = /FREQuency\s([\d\.]+[Ee][+-]\d+|\d+\.\d+|\d+)/g;
 
-        //? ---- Acquire ----
-        const averageMatch = data.match(averageValue);
-        if(averageMatch){ 
-            acquireAverage = parseFloat(averageMatch[0].split(" ")[1]); 
-        }
-        const lengthMatch = data.match(lengthValue);
-        if(lengthMatch){
-            acquireLength = parseFloat(lengthMatch[0].split(" ")[1]);
-        }
-        const modeMatch = data.match(modeValue);
-        if(modeMatch){
-            acquireMode = parseFloat(modeMatch[3].split(" ")[1]);
-        }
-        //? ---- Display ---- 
-        // const timeMatch = data.match(timeValue);
-        // if(timeMatch){ 
-        //     time = parseFloat(timeMatch[0].split(" ")[1]); 
-        // }
-        const scaleMatch = data.match(scaleValue);
-        if (scaleMatch){
-            verticalScaleCH1 = parseFloat(scaleMatch[0].split(" ")[1]);
-            verticalScaleCH2 = parseFloat(scaleMatch[1].split(" ")[1]);
-            horizontalScale = parseFloat(scaleMatch[2].split(" ")[1]);
-        }
-        //? ---- CH1 & CH2 ----
-        const displayMatch = data.match(displayValue);
-        if(displayMatch){
-            if(displayMatch[2]) { displayCH1 = parseFloat(displayMatch[2].split(" ")[1]); }
-            if(displayMatch[3]) { displayCH2 = parseFloat(displayMatch[3].split(" ")[1]); }
-        }
-        const couplingMatch = data.match(couplingValue);
-        if(couplingMatch){
-            if(couplingMatch[0]) { couplingCH1 = parseFloat(couplingMatch[0].split(" ")[1]); }
-            if(couplingMatch[1]) { couplingCH2 = parseFloat(couplingMatch[1].split(" ")[1]); }
-        }
-        const invertMatch = data.match(invertValue);
-        if(invertMatch){
-            if(invertMatch[0]){ invertCH1 = parseFloat(invertMatch[0].split(" ")[1]); }
-            if(invertMatch[1]){ invertCH2 = parseFloat(invertMatch[1].split(" ")[1]); }
-        }
-        const probeMatch = data.match(probeValue);
-        if(probeMatch){
-            if(probeMatch[0]) { probeCH1 = parseFloat(probeMatch[0].split(" ")[1]); }
-            if(probeMatch[1]) { probeCH2 = parseFloat(probeMatch[1].split(" ")[1]); }
-        }
-        const vppMatch = data.match(vppValue);
-        if(vppMatch){
-            if(vppMatch[0]) { vppCH1 = parseFloat(vppMatch[0].split(" ")[1]); }
-            if(vppMatch[1]) { vppCH2 = parseFloat(vppMatch[1].split(" ")[1]); }
-        }
-        const vrmsMatch = data.match(vrmsValue);
-        if(vrmsMatch){
-            if(vrmsMatch[0]) { vrmsCH1 = parseFloat(vrmsMatch[0].split(" ")[1]); }
-            if(vrmsMatch[1]) { vrmsCH2 = parseFloat(vrmsMatch[1].split(" ")[1]); }
-        }
-        const periodMatch = data.match(periodValue);
-        if(periodMatch){
-            if(periodMatch[0]) { periodCH1 = parseFloat(periodMatch[0].split(" ")[1]); }
-            if(periodMatch[1]) { periodCH2 = parseFloat(periodMatch[1].split(" ")[1]); }
-        }
-        const frequencyMatch = data.match(frequencyValue);
-        if(frequencyMatch){
-            if(frequencyMatch[0]) { frequencyCH1 = parseFloat(frequencyMatch[0].split(" ")[1]); }
-            if(frequencyMatch[1]) { frequencyCH2 = parseFloat(frequencyMatch[1].split(" ")[1]); }
-        }
-        //? ---- Trigger ----
-        const typeMatch = data.match(typeValue);
-        if(typeMatch){
-            triggerType = parseFloat(typeMatch[0].split(" ")[1]);
-        }
-        const sourceMatch = data.match(sourceValue);
-        if(sourceMatch){
-            triggerSource = parseFloat(sourceMatch[0].split(" ")[1]);
-        }
-    });
-    port.on('data', function(data) {
-        if(flag1 == 0 && data[0] == "35" && data[10] == "1"){
-            headerCH1 = data;
-            flag1 = 1;
-        }
-        else if(flag1 == 1 && (data[0] == "0" || data[0] == "255")){
-            waveCH1 = data;
-            flag1 = 0;
-        }
+    //     //? ---- Acquire ----
+    //     const averageMatch = data.match(averageValue);
+    //     if(averageMatch){ 
+    //         acquireAverage = parseFloat(averageMatch[0].split(" ")[1]); 
+    //     }
+    //     const lengthMatch = data.match(lengthValue);
+    //     if(lengthMatch){
+    //         acquireLength = parseFloat(lengthMatch[0].split(" ")[1]);
+    //     }
+    //     const modeMatch = data.match(modeValue);
+    //     if(modeMatch){
+    //         acquireMode = parseFloat(modeMatch[3].split(" ")[1]);
+    //     }
+    //     //? ---- Display ---- 
+    //     // const timeMatch = data.match(timeValue);
+    //     // if(timeMatch){ 
+    //     //     time = parseFloat(timeMatch[0].split(" ")[1]); 
+    //     // }
+    //     const scaleMatch = data.match(scaleValue);
+    //     if (scaleMatch){
+    //         verticalScaleCH1 = parseFloat(scaleMatch[0].split(" ")[1]);
+    //         verticalScaleCH2 = parseFloat(scaleMatch[1].split(" ")[1]);
+    //         horizontalScale = parseFloat(scaleMatch[2].split(" ")[1]);
+    //     }
+    //     //? ---- CH1 & CH2 ----
+    //     const displayMatch = data.match(displayValue);
+    //     if(displayMatch){
+    //         if(displayMatch[2]) { displayCH1 = parseFloat(displayMatch[2].split(" ")[1]); }
+    //         if(displayMatch[3]) { displayCH2 = parseFloat(displayMatch[3].split(" ")[1]); }
+    //     }
+    //     const couplingMatch = data.match(couplingValue);
+    //     if(couplingMatch){
+    //         if(couplingMatch[0]) { couplingCH1 = parseFloat(couplingMatch[0].split(" ")[1]); }
+    //         if(couplingMatch[1]) { couplingCH2 = parseFloat(couplingMatch[1].split(" ")[1]); }
+    //     }
+    //     const invertMatch = data.match(invertValue);
+    //     if(invertMatch){
+    //         if(invertMatch[0]){ invertCH1 = parseFloat(invertMatch[0].split(" ")[1]); }
+    //         if(invertMatch[1]){ invertCH2 = parseFloat(invertMatch[1].split(" ")[1]); }
+    //     }
+    //     const probeMatch = data.match(probeValue);
+    //     if(probeMatch){
+    //         if(probeMatch[0]) { probeCH1 = parseFloat(probeMatch[0].split(" ")[1]); }
+    //         if(probeMatch[1]) { probeCH2 = parseFloat(probeMatch[1].split(" ")[1]); }
+    //     }
+    //     const vppMatch = data.match(vppValue);
+    //     if(vppMatch){
+    //         if(vppMatch[0]) { vppCH1 = parseFloat(vppMatch[0].split(" ")[1]); }
+    //         if(vppMatch[1]) { vppCH2 = parseFloat(vppMatch[1].split(" ")[1]); }
+    //     }
+    //     const vrmsMatch = data.match(vrmsValue);
+    //     if(vrmsMatch){
+    //         if(vrmsMatch[0]) { vrmsCH1 = parseFloat(vrmsMatch[0].split(" ")[1]); }
+    //         if(vrmsMatch[1]) { vrmsCH2 = parseFloat(vrmsMatch[1].split(" ")[1]); }
+    //     }
+    //     const periodMatch = data.match(periodValue);
+    //     if(periodMatch){
+    //         if(periodMatch[0]) { periodCH1 = parseFloat(periodMatch[0].split(" ")[1]); }
+    //         if(periodMatch[1]) { periodCH2 = parseFloat(periodMatch[1].split(" ")[1]); }
+    //     }
+    //     const frequencyMatch = data.match(frequencyValue);
+    //     if(frequencyMatch){
+    //         if(frequencyMatch[0]) { frequencyCH1 = parseFloat(frequencyMatch[0].split(" ")[1]); }
+    //         if(frequencyMatch[1]) { frequencyCH2 = parseFloat(frequencyMatch[1].split(" ")[1]); }
+    //     }
+    //     //? ---- Trigger ----
+    //     const typeMatch = data.match(typeValue);
+    //     if(typeMatch){
+    //         triggerType = parseFloat(typeMatch[0].split(" ")[1]);
+    //     }
+    //     const sourceMatch = data.match(sourceValue);
+    //     if(sourceMatch){
+    //         triggerSource = parseFloat(sourceMatch[0].split(" ")[1]);
+    //     }
+    // });
+    // port.on('data', function(data) {
+    //     if(flag1 == 0 && data[0] == "35" && data[10] == "1"){
+    //         headerCH1 = data;
+    //         flag1 = 1;
+    //     }
+    //     else if(flag1 == 1 && (data[0] == "0" || data[0] == "255")){
+    //         waveCH1 = data;
+    //         flag1 = 0;
+    //     }
 
-        if(flag2 == 0 && data[0] == "35" && data[10] == "2"){
-            headerCH2 = data;
-            flag2 = 1;
-        }
-        else if(flag2 == 1 && (data[0] == "0" || data[0] == "255")){
-            waveCH2 = data;
-            flag2 = 0;
-        }
-    });
-    port.on('open', function() {
-        console.log('Port is open');
-    });
-    port.on('close', function() {
-        console.log('Port is closed');
-    });
+    //     if(flag2 == 0 && data[0] == "35" && data[10] == "2"){
+    //         headerCH2 = data;
+    //         flag2 = 1;
+    //     }
+    //     else if(flag2 == 1 && (data[0] == "0" || data[0] == "255")){
+    //         waveCH2 = data;
+    //         flag2 = 0;
+    //     }
+    // });
+    // port.on('open', function() {
+    //     console.log('Port is open');
+    // });
+    // port.on('close', function() {
+    //     console.log('Port is closed');
+    // });
 
 router.get('/', function(req, res){
     res.render("homepage");
+});
+router.get('/support', function(req, res){
+    res.render("support");
 });
 router.get('/acquisition', function(req, res){ // TODO - Ver se mantem esta rota.
     acquisitionFlag = 1;

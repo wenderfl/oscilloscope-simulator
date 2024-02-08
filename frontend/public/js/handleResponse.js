@@ -366,8 +366,8 @@ function handleResponse(response) {
                 let channel = 1;
                 let value = response.data_wave_CH1.data;
                 let j=0, k=0;
-                dir = [];
-                val = [];
+                let dir = [];
+                let val = [];
                 for(let i = 0; i < value.length; i++){
                     if(i%2 == 0){
                         dir[j] = value[i];

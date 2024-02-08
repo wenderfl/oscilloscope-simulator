@@ -2,6 +2,7 @@
     --pageTitlebackground: #2569b1;
     --pageTitleColor: #fff;
     --offcanvasBackground: #e1e1e1;
+    --buttonOffcanvasBackground: #9e9e9e;
     --offcanvasCloseButtonBackground: #e2e2e2;
     --offcanvasCloseButtonBackgroundHover: #b6b6b6;
     --modeOffcanvasSectionBackground: #69a3e1;
@@ -24,8 +25,28 @@ body{
     font-size: 14px;
     line-height: 1.5;
 }
+#background{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: -3;
+}
+.background-center{
+    position: absolute;
+    top: -100px;
+    left: -70px;
+    width: 1400px;
+    height: 100vh;
+    background-color: rgba(24, 24, 24, 0.8);
+    z-index: -2;
+}
+.navbar{
+    background-color: var(--pageTitlebackground);
+}
 #pageTitle{
-    position: relative;
+    position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -38,20 +59,44 @@ body{
     line-height: 50px;
     z-index: 1;
     box-shadow: var(--boxShadow);
-    cursor: default;
+    cursor: pointer;
     user-select: none;
+}
+#support{
+    position: absolute;
+    top: 0px;
+    right: 80px;
+    width: 100%;
+    height: 0px;
+    background-color: var(--pageTitlebackground);
+    color: var(--pageTitleColor);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: right;
+    line-height: 50px;
+    z-index: 1;
+    box-shadow: var(--boxShadow);
+    cursor: pointer;
+}
+.downloads{
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 50px;
+    z-index: 1;
+    box-shadow: var(--boxShadow);
 }
 area {
     cursor: pointer;
 }
-
 .signalGenerator{ /* Esta vai ser preciso modificar para ficar algo tipo offcanvas*/
     position: relative;
     margin: 80px;
     top: -100px;
     opacity: 0;
 }
-
 .no-scroll {
     overflow: hidden;
 }

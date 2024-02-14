@@ -44,6 +44,7 @@ function updateChart1(){
             measureCalculationCH1();
             if(measureFlag == 1){ measureMenu1(); }
             if(measureAllCH1Flag == 1){ measureAllCH1(); }
+
         }
         else if(CH1inputFlag == 0){ 
             showGraph1(dcSignal);
@@ -164,7 +165,7 @@ function showGraph1(data) {
     if(mathDataFlag == 1){ showGraph3(mathData); }
     svg1 = d3.select('#myChart1');
 
-    const width = 368;
+    const width = 366;
     const height = 295;
 
     const horizontalScale = horizontalScaleList[horizontalScaleValue]*10;
@@ -207,7 +208,7 @@ function showGraph1Real(data) {
     if(mathDataFlag == 1){showGraph3(mathData);}
     svg1 = d3.select('#myChart1');
 
-    const width = 368;
+    const width = 366;
     const height = 295;
 
     const horizontalScale = horizontalScaleList[horizontalScaleValue]*10
@@ -249,7 +250,7 @@ function showGraph2(data) {
     if(mathDataFlag == 1){showGraph3(mathData);}
     svg2 = d3.select('#myChart2');
 
-    const width = 368;
+    const width = 366;
     const height = 295;
 
     const horizontalScale = horizontalScaleList[horizontalScaleValue]*10
@@ -291,7 +292,7 @@ function showGraph2Real(data) {
     if(mathDataFlag == 1){showGraph3(mathData);}
     svg2 = d3.select('#myChart2');
 
-    const width = 368;
+    const width = 366;
     const height = 295;
 
     const horizontalScale = horizontalScaleList[horizontalScaleValue]*10
@@ -332,7 +333,7 @@ function showGraph2Real(data) {
 function showGraph3(data) {
     svg3 = d3.select('#myChart3');
 
-    const width = 368;
+    const width = 366;
     const height = 295;
 
     const horizontalScale = horizontalScaleList[horizontalScaleValue]*10;

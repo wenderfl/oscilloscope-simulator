@@ -92,3 +92,5 @@ let CH1ExtVavg = 0;
 let CH2ExtVavg = 0;
 let CH1ExtFlag = 1;
 let CH2ExtFlag = 1;
+let CH1ExtSignalFlag = 0;
+let CH2ExtSignalFlag = 0;

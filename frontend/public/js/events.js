@@ -116,14 +116,17 @@ $(document).ready(function(){
         // The user will be able to upload a CSV file
         turnOffOffcanvas();
         CH1ExtSignal = 1;
-        CH2ExtSignal = 0;
+        CH1ExtSignalFlag = 1;
+        CH2ExtSignalFlag = 0;
+        //CH2ExtSignal = 0;
         $("#csvFileInput").trigger('click');
     });
     $("#externalFile-ch2").click(function(){
         // The user will be able to upload a CSV file
         turnOffOffcanvas();
-        CH1ExtSignal = 0;
+        //CH1ExtSignal = 0;
         CH2ExtSignal = 1;
+        CH2ExtSignalFlag = 1;
         $("#csvFileInput").trigger('click');
     });
     $("#csvFileInput").change(function(e) {
@@ -138,14 +141,14 @@ $(document).ready(function(){
     // Acquisition-only mode + hold mode if stop button is pressed
     $("#realSignal-ch1").click(function(){
         // If the connection with the Oscilloscope is established, the user will be able to receive the signal from the oscilloscope
-        turnOffOffcanvas();
-        alert("The oscilloscope is not on"); //! Temporário
+        //turnOffOffcanvas();
+        //alert("The oscilloscope is not on"); //! Temporário
         //realSignal("CH1");
     });
     $("#realSignal-ch2").click(function(){
         // If the connection with the Oscilloscope is established, the user will be able to receive the signal from the oscilloscope
-        turnOffOffcanvas();
-        alert("The oscilloscope is not on"); //! Temporário
+        //turnOffOffcanvas();
+        //alert("The oscilloscope is not on"); //! Temporário
         //realSignal("CH2");
     });
 //? ---------------------------------------------------------------------------------------------------------
@@ -912,20 +915,21 @@ $(document).ready(function(){
                 updateTriggerMenu1();
             }
             else if(horizontalMenuFlag == 1){
-                if(mode == "simulation"){
-                    if(CH1inputFlag == 1 && CH2inputFlag == 1){
-                        horizontalSweep = 4;
-                        $("#main").css("display", "none");
-                        $("#XY").css("display", "block");
-                        $("#myChart1").css("display", "block");
-                        $("#myChart2").css("display", "none");
-                        $("#myChart3").css("display", "none");
-                        updateChartXY();
-                    }
-                    else{ alert("Both channels must be on to use XY mode."); }
-                }
-                else if(mode == "acquisition"){ sendPostRequest("/timebase/sweep", 4); }
-                // TODO - Modo XY do osciloscópio não envia forma de onda
+            //     if(mode == "simulation"){
+            //         if(CH1inputFlag == 1 && CH2inputFlag == 1){
+            //             horizontalSweep = 4;
+            //             $("#main").css("display", "none");
+            //             $("#XY").css("display", "block");
+            //             $("#myChart1").css("display", "block");
+            //             $("#myChart2").css("display", "none");
+            //             $("#myChart3").css("display", "none");
+            //             updateChartXY();
+            //         }
+            //         else{ alert("Both channels must be on to use XY mode."); }
+            //     }
+            //     else if(mode == "acquisition"){ sendPostRequest("/timebase/sweep", 4); }
+            //     // TODO - Modo XY do osciloscópio não envia forma de onda
+                alert("This mode is under development");
             }
         }
         else{ checkAndAlertOscilloscopeStatus(); }

@@ -287,7 +287,8 @@ function signalGeneratorCH1() {
     $("#signalGeneratorOffcanvasCH1").css("top", 500);
     $("#signalGeneratorOffcanvasCH1").css("left", 200);
     $("#signalGeneratorHeaderCH1").text("CH1 Signal Generator");
-    $("#signalGeneratorDragHeaderCH1").css("background-color", "#f9a149").css("color", "black");
+    // $("#signalGeneratorDragHeaderCH1").css("background-color", "#f9a149").css("color", "black");
+    $("#signalGeneratorDragHeaderCH1").css("background-color", "#fbff00").css("color", "black");
 }
 function signalGeneratorCH2() {
     if(CH2ChangableWave == 0){ sineWaveCH2(); }
@@ -345,7 +346,6 @@ function offsetSignalCH2(){
         updateChart2();
     }
 }
-
 function detectDecimalSeparator(delimiter) {
     decimal = ',';
     if(delimiter == ';'){ decimal = ','; }
@@ -377,10 +377,8 @@ function processData(csvData) {//External Signal
     //const csvDataWithDotDecimal = csvData.replace(new RegExp(decimalSeparator, 'g'), '.'); // 
     // Use d3.csvParse com o delimitador detectado
     const data = d3.csvParse(csvData);
-    //const data = d3.csvParse(csvData);
 
-
-    if(CH1ExtSignal == 1){
+    if(CH1ExtSignalFlag == 1){
         CH1BaseData = JSON.parse(JSON.stringify(data));
         resetInputCH1Flags();
         CH1input = 1;
@@ -398,8 +396,9 @@ function processData(csvData) {//External Signal
                 $("#alertMessage").css("display", "none");
             }, 5000);
         }
+        CH1ExtSignalFlag = 0;
     }
-    else if(CH2ExtSignal == 1){
+    if(CH2ExtSignalFlag == 1){
         CH2BaseData = JSON.parse(JSON.stringify(data));
         resetInputCH2Flags();
         CH2input = 1;
@@ -417,6 +416,7 @@ function processData(csvData) {//External Signal
                 $("#alertMessage").css("display", "none");
             }, 5000);
         }
+        CH2ExtSignalFlag = 0;
     }
 
 }
@@ -456,7 +456,6 @@ function triggerLevel(){
             let valueMax = d3.max(CH1Data, d => parseFloat(d.Amplitude));
             let valueMin = d3.min(CH1Data, d => parseFloat(d.Amplitude)); 
             triggerLevelVolt = 4 * verticalScaleCH1_Value * trigger.level; // Trigger Level in Volts
-            // TODO - Criar caso o sinal esteja invertido ou com o slope invertido para poder funcionar da mesma maneira
             // TODO - Caso exista posição vertical, o trigger level segue a posição vertical
             // TODO - Caso se altere a escala vertical, o trigger level ajusta-se em função da escala.
             let triggerTime = 0;
@@ -523,7 +522,7 @@ function triggerLevel(){
         if(trigger.position + trigger.level > 1 || trigger.position + trigger.level < -1){ $("#cursor-trigger").css("display", "none"); }
         else{ $("#cursor-trigger").css("display", "block"); }
 
-        $("#cursor-trigger").css("top", -(trigger.level + trigger.position)*147.5+137); // Moves the cursor to the new position
+        $("#cursor-trigger").css("top", -(trigger.level + trigger.position)*147.5+139); // Moves the cursor to the new position
         if(triggerLevelVolt > 0 && triggerLevelVolt < 10**-6 || triggerLevelVolt < 0 && triggerLevelVolt > -(10**-6)){ triggerLevelVolt = 0; }
         let string = scientificNotationToReal(triggerLevelVolt.toExponential(3));
         $("#alertMessage").css("display", "block");

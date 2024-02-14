@@ -600,6 +600,7 @@ function autoSet(){
                 if (amplitudeCH2_Value / factor <= 8) {
                     verticalScaleValueCH2 = verticalScaleList.indexOf(factor);
                     couplingValueCH2 = 0;
+                    updateChart2();
                     verticalScaleCH2();
                     verticalPositionValueCH2 = 0;
                     verticalPositionCH2();
@@ -620,6 +621,7 @@ function autoSet(){
                 if (amplitudeCH1_Value / factor <= 4) {
                     verticalScaleValueCH1 = verticalScaleList.indexOf(factor);
                     couplingValueCH1 = 0;
+                    updateChart1();
                     verticalScaleCH1();
                     verticalPositionValueCH1 = 0.5;
                     trigger.position = 0.5;
@@ -634,6 +636,7 @@ function autoSet(){
                     verticalScaleCH2();
                     verticalPositionValueCH2 = -0.5;
                     verticalPositionCH2();
+                    updateChart2();
                     break;
                 }
             }
@@ -753,11 +756,11 @@ function measureCalculationCH1(){
     vMaxCH1 = vMaxCH1.toFixed(2);
     vMinCH1 = vMinCH1.toFixed(2);
 
-    console.log("vAvgCH1 (antes entrar)= " + vAvgCH1);
 
     if(CH1ExtFlag == 0){
         CH1ExtFlag = 1;
         CH1ExtVavg = vAvgCH1;
+        console.log("CH1ExtVavg (depois entrar)= " + CH1ExtVavg);
         updateChart1();
     }
 }

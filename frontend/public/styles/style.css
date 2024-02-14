@@ -7,7 +7,8 @@
     --offcanvasCloseButtonBackgroundHover: #b6b6b6;
     --modeOffcanvasSectionBackground: #69a3e1;
     --modeOffcanvasSectionColor: #fff;
-    --CH1OffcanvasSectionBackground: #f9a149;
+    /*--CH1OffcanvasSectionBackground: #f9a149; */
+    --CH1OffcanvasSectionBackground: #fbff00;
     --inputCH1OffcanvasSectionColor: #000000;
     --CH2OffcanvasSectionBackground: #245992;
     --inputCH2OffcanvasSectionColor: #fff;

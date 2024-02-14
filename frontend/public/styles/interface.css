@@ -7,7 +7,7 @@
 }
 #background-image {
     position: absolute;
-    top: 1px;
+    top: 0px;
     left: -3px;
     width: 373px;
     height: 301px;
@@ -36,8 +36,10 @@
 }
 #cursor-trigger{
     position: absolute;
-    top: 137px;
-    left: 351px;
+    top: 139px;
+    left: 353px;
+    width: 17px;
+    height: 17px;
     z-index: 3;
     opacity: 1;
 }
@@ -87,8 +89,8 @@
 }
 #ch1-signal-frequency{
     position: absolute;
-    top: 327px;
-    left: 400px;
+    top: 311px;
+    left: 384px;
     color: #fbff00;
     z-index: 2;
     font-size: 12px;
@@ -147,8 +149,8 @@
 }
 #ch2-signal-frequency{
     position: absolute;
-    top: 327px;
-    left: 400px;
+    top: 311px;
+    left: 384px;
     color: #00eaff;
     z-index: 2;
     font-size: 12px;    
@@ -209,7 +211,7 @@
     position: absolute;
     top: 313px;
     left: 158px;
-    color: rgb(44, 248, 227);
+    color: rgb(83, 253, 157);
     z-index: 2;
     font-size: 11px;    
     width: 60px;

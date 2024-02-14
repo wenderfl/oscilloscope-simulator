@@ -176,7 +176,7 @@
     padding-bottom: 5px;
 }
 #realSignal-ch1:hover{
-    cursor: pointer;
+    cursor: not-allowed;
     color: var(--inputCH1OffcanvasSectionColor);
     background-color: var(--CH1OffcanvasSectionBackground);
 }
@@ -277,7 +277,7 @@
     padding-bottom: 5px;
 }
 #realSignal-ch2:hover{
-    cursor: pointer;
+    cursor: not-allowed;
     color: var(--inputCH2OffcanvasSectionColor);
     background-color: var(--CH2OffcanvasSectionBackground);
 }
@@ -289,7 +289,7 @@
     top: 120px;
     left: 600px;
     width: 250px;
-    height: 287px;
+    height: 307px;
     background-color: var(--offcanvasBackground);
     border: 1px solid #232323;
     box-shadow: #595959 5px 5px 5px;

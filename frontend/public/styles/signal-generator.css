@@ -19,6 +19,7 @@
     border-bottom: 1px solid #232323;
     text-align: left;
     cursor: grab;
+    background-color: var(--CH1OffcanvasSectionBackground);
 }
 .signal-generator-header-CH1:active {
     cursor: grabbing;

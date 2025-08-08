@@ -4,6 +4,7 @@
   "description": "Oscilloscope Simulator that has 2 modes of working, one communicating with a real oscilloscope and the other one simulating the oscilloscope.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Joao Ferreira",
